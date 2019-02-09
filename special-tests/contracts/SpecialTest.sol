@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity ^0.5.3;
 
 contract SpecialTest
 {
@@ -209,4 +209,24 @@ contract SpecialTest
     uint number = block.number;
     bytes memory one = abi.encode(1);
   }
+
+  function abiNodeTest() public
+  {
+    uint thirteen;
+    uint fourteen;
+    uint fifteen;
+    bool status;
+    bytes memory returndata;
+    bytes memory encoded = abi.encode(1,2,3);
+    bytes memory packed = abi.encodePacked(uint(4),uint(5),uint(6));
+    bytes memory wSelector = abi.encodeWithSelector(0xffffffff, 7, 8, 9);
+    bytes memory wSig = abi.encodeWithSignature("hello()", 10, 11, 12);
+    (thirteen, fourteen, fifteen) = abi.decode(hex"000000000000000000000000000000000000000000000000000000000000000d000000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000000f", (uint, uint, uint));
+    uint comparison = mulmod(16, 17, 18);
+    (status, returndata) = address(this).call(hex"");
+    bytes memory code = type(EmptyTest).creationCode;
+  }
+}
+
+contract EmptyTest {
 }
