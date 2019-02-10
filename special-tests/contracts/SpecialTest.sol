@@ -228,5 +228,124 @@ contract SpecialTest
   }
 }
 
+contract SpecialTest2
+{
+
+  function() external payable {
+  }
+
+  int[] array;
+
+  function magicTestExtended(bytes calldata dataVs) external payable
+  {
+    function () internal pure decodeVs;
+    function () internal pure returns (bytes memory) encodeVs;
+    function (bytes4) internal pure returns (bytes memory) encodeWithSelectorVs;
+    function (string memory) internal pure returns (bytes memory) encodeWithSignatureVs;
+    address payable addressPayableVs;
+    uint uintVs;
+    bytes4 sigVs;
+    block;
+    block.coinbase;
+    block.difficulty;
+    block.gaslimit;
+    block.number;
+    block.timestamp;
+    msg;
+    msg.data;
+    msg.sender;
+    msg.sig;
+    msg.value;
+    now;
+    tx;
+    tx.gasprice;
+    tx.origin;
+    abi;
+    abi.decode(hex"0000000000000000000000000000000000000000000000000000000000000001",(uint));
+    abi.encode(1);
+    abi.encodePacked(uint(1));
+    abi.encodeWithSelector(0xffffffff, 1);
+    abi.encodeWithSignature("a()", 1);
+  }
+
+  function builtInTestExtended() public
+  {
+    function (uint) internal view returns (bytes32) blockhashVs;
+    function () internal view returns (uint) gasleftVs;
+    function (bool) internal pure assertVs;
+    function (bool) internal requireVs1;
+    function (bool, string memory) internal requireVs2;
+    function () internal revert1Vs;
+    function (string memory) internal revertVs2;
+    function (uint, uint, uint) internal pure returns (uint) opsmodVs;
+    function (bytes memory) internal pure returns (bytes32) hash256Vs;
+    function (bytes memory) internal pure returns (bytes20) ripemd160Vs;
+    function (bytes32, uint8, bytes32, bytes32) internal pure returns (address) ecrecoverVs;
+    function (address payable) internal selfdestructVs;
+    function (bytes32) internal log0Vs;
+    function (bytes32,bytes32) internal log1Vs;
+    function (bytes32,bytes32,bytes32) internal log2Vs;
+    function (bytes32,bytes32,bytes32,bytes32) internal log3Vs;
+    function (bytes32,bytes32,bytes32,bytes32,bytes32) internal log4Vs;
+    SpecialTest2 contractVs;
+    this;
+    blockhash;
+    gasleft;
+    assert;
+    require(true);
+    require(true, "");
+    revert();
+    revert("");
+    addmod;
+    mulmod;
+    keccak256;
+    sha256;
+    ripemd160;
+    ecrecover;
+    selfdestruct;
+    log0;
+    log1;
+    log2;
+    log3;
+    log4;
+  }
+
+  function memberTestExtended() public payable
+  {
+    function (uint) internal transferVs;
+    function (uint) internal returns (bool) sendVs;
+    function (bytes memory) internal returns (bool, bytes memory) callVs;
+    function (bytes memory) internal view returns (bool, bytes memory) staticcallVs;
+    function (int) internal returns (uint) pushVs;
+    function () internal popVs;
+    function (uint) internal returns (function() external payable) gasVs;
+    uint uintVs;
+    bytes memory bytesVs;
+    address(this).balance;
+    address(this).transfer(0);
+    address(this).send(0);
+    address(this).call;
+    address(this).delegatecall;
+    address(this).staticcall;
+    type(EmptyTest).creationCode;
+    type(EmptyTest).runtimeCode;
+    array.length;
+    array.push;
+    array.pop;
+    this.memberTestExtended.gas;
+    this.memberTestExtended.value;
+  }
+
+  function resultingTestExtended() public payable
+  {
+    function (address) internal pure typeVs;
+    function () external withStuffVs;
+    type;
+    this.resultingTestExtended.gas(0);
+    this.resultingTestExtended.value(0);
+    this.resultingTestExtended.gas(0).value(0);
+  }
+}
+
 contract EmptyTest {
 }
