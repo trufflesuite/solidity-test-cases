@@ -344,6 +344,9 @@ contract SpecialTest2
     this.resultingTestExtended.gas(0);
     this.resultingTestExtended.value(0);
     this.resultingTestExtended.gas(0).value(0);
+    address(this).call.gas(0);
+    address(this).call.value(0);
+    address(this).call.value(0).gas(0);
   }
 }
 
