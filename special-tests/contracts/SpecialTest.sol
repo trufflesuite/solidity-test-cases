@@ -352,3 +352,42 @@ contract SpecialTest2
 
 contract EmptyTest {
 }
+
+contract UsingTest {
+  using UsingTestLib for uint;
+  using UsingStarTestLib for *;
+
+  function usingTest() public
+  {
+    function (uint) internal pure returns (uint) f;
+    function (uint,uint) internal pure returns (uint) f2;
+    function (uint) internal pure returns (uint) g;
+    function (uint,uint) internal pure returns (uint) g2;
+    uint a;
+    uint b;
+    uint c;
+    a = 10;
+    //f = a.add; //none of these compile
+    //g = a.mul;
+    //f2 = a.add;
+    //g2 = a.mul;
+    f2 = UsingTestLib.add;
+    g2 = UsingStarTestLib.mul;
+    b = a.add(21);
+    c = a.mul(3);
+    b = UsingTestLib.add(10, 21);
+    c = UsingStarTestLib.mul(10, 3);
+  }
+}
+
+library UsingTestLib {
+  function add(uint a, uint b) internal pure returns (uint) {
+    return a + b;
+  }
+}
+
+library UsingStarTestLib {
+  function mul(uint a, uint b) internal pure returns (uint) {
+    return a * b;
+  }
+}
