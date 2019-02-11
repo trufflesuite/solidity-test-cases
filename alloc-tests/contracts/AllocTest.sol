@@ -49,7 +49,7 @@ contract AllocTest {
     mapping(string => MappingTree) children;
   }
 
-  uint w0;
+  uint public w0;
   uint16[2] w1b0b3;
   uint16[2] w1b4b7;
   uint w2;
@@ -689,6 +689,8 @@ contract AllocTest {
     emit Done();
   }
 
+  //causes Truffle error
+  /*
   function copyCircularTypeToMemoryTest() public
   {
     Tree memory memoryTree;
@@ -696,6 +698,19 @@ contract AllocTest {
     tree.children.length = 1;
     tree.children[0].x = 214;
     memoryTree = tree;
+    emit Done();
+  }
+  */
+
+  function viewTypeTest() public view returns (uint) {
+    return w0;
+  }
+
+  function viewTypeTester() public {
+    function() external view returns (uint) f;
+    f = this.viewTypeTest;
+    f = this.w0;
+    f();
     emit Done();
   }
 
