@@ -384,6 +384,19 @@ library UsingTestLib {
   function add(uint a, uint b) internal pure returns (uint) {
     return a + b;
   }
+  function addPublic(uint a, uint b) public pure returns (uint) {
+    return a + b;
+  }
+  function priv() private pure {
+  }
+  function libraryVarTest() public {
+    function () internal pure f;
+    function (uint, uint) internal pure returns (uint) gi;
+    //function (uint, uint) external pure returns (uint) ge;
+    f = priv;
+    gi = addPublic;
+    //ge = UsingTestLib.addPublic;
+  }
 }
 
 library UsingStarTestLib {
