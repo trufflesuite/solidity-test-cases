@@ -18,10 +18,18 @@ contract ComplexMappingTest {
 
   mapping(string => mapping(string => uint)) mapMap;
 
+  mapping(uint => uint) simpleMap;
+
+  uint[2] array;
+
   function run() public {
     it[0].map["hello"][1].map["goodbye"] = 107;
     mapArray[0]["hello"] = 82;
     mapMap["hello"]["goodbye"] = 683;
+    array[0] = 3;
+    simpleMap[array[0]] = 5;
+    simpleMap[simpleMap[3]] = 7;
+    simpleMap[array[1] = 11] = 13;
     emit Done();
   }
 }
