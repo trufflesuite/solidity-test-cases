@@ -416,7 +416,9 @@ contract UsingTest {
   {
     function (uint,uint) external pure returns (uint) f;
     UsingTestLib lib;
+    address addr;
     //lib = UsingTestLib;
+    //addr = address(UsingTestLib);
     lib = UsingTestLib(0x0000000000000000000000000000000000000001); //WHAT
     //f = lib.addPublic; //huh. this fails, but for an unexpected reason.
   }
