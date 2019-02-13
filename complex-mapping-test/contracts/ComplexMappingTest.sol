@@ -22,6 +22,8 @@ contract ComplexMappingTest {
 
   uint[2] array;
 
+  mapping(uint => uint)[2] twoMaps;
+
   function run() public {
     it[0].map["hello"][1].map["goodbye"] = 107;
     mapArray[0]["hello"] = 82;
@@ -31,5 +33,14 @@ contract ComplexMappingTest {
     simpleMap[simpleMap[3]] = 7;
     simpleMap[array[1] = 11] = 13;
     emit Done();
+  }
+
+  function returnMappingTest() public {
+    returnsMapping(twoMaps)[1] = 8;
+    emit Done();
+  }
+
+  function returnsMapping(mapping(uint => uint)[2] storage maps) internal view returns (mapping(uint => uint) storage) {
+    return maps[0];
   }
 }
