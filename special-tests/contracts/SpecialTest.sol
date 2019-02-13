@@ -231,6 +231,12 @@ contract SpecialTest
 contract SpecialTest2
 {
 
+  struct Pair {
+    int x;
+    int y;
+  }
+
+
   function() external payable {
   }
 
@@ -348,9 +354,30 @@ contract SpecialTest2
     address(this).call.value(0);
     address(this).call.value(0).gas(0);
   }
+
+  function structorTest() public {
+    //function (int,int) internal pure returns (Pair memory) f;
+    //function (int,int) external pure returns (Pair memory) fe;
+    Pair;
+    Pair(3,4);
+    Pair({y: 5, x: 7});
+    //{y: 5, x: 7};
+    //this.Pair;
+    //this.Pair(3,4);
+    //this.Pair({x: 5, y: 7});
+    //f = Pair;
+    //fe = this.Pair;
+    new EmptyStructorTest();
+    new int[](2);
+  }
 }
 
 contract EmptyTest {
+}
+
+contract EmptyStructorTest {
+  constructor() public {
+  }
 }
 
 contract UsingTest {
