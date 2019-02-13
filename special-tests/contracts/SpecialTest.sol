@@ -358,6 +358,8 @@ contract SpecialTest2
   function structorTest() public {
     //function (int,int) internal pure returns (Pair memory) f;
     //function (int,int) external pure returns (Pair memory) fe;
+    //function () internal returns (EmptyStructorTest) g;
+    //function (uint) internal pure returns (int[] memory) h;
     Pair;
     Pair(3,4);
     Pair({y: 5, x: 7});
@@ -368,7 +370,11 @@ contract SpecialTest2
     //f = Pair;
     //fe = this.Pair;
     new EmptyStructorTest();
+    new EmptyStructorTest;
+    //g = new EmptyStructorTest;
     new int[](2);
+    new int[];
+    //h = new int[];
   }
 }
 
