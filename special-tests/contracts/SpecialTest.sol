@@ -411,6 +411,15 @@ contract UsingTest {
     b = UsingTestLib.add(10, 21);
     c = UsingStarTestLib.mul(10, 3);
   }
+
+  function libVarTest() public pure
+  {
+    function (uint,uint) external pure returns (uint) f;
+    UsingTestLib lib;
+    //lib = UsingTestLib;
+    lib = UsingTestLib(0x0000000000000000000000000000000000000001); //WHAT
+    //f = lib.addPublic; //huh. this fails, but for an unexpected reason.
+  }
 }
 
 library UsingTestLib {
