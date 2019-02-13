@@ -8,10 +8,11 @@ contract NamedArgTest {
   function () external payable {
   }
 
-  function run() public view {
+  function run() public {
     f({x: 5, y: 3}); //WHAT
     this.f({x: 5, y: 3}); //yup this works too
     TestLib.g({x: 8, y: 3}); //and this of course
+    new ConstructorTest({input: 30}); //and this of course
     /* none of these work though
     blockhash({blockNumber: block.number});
     assert({condition: true});
@@ -34,5 +35,14 @@ contract NamedArgTest {
 library TestLib {
   function g(uint x, uint y) external pure returns (uint) {
     return 3*x + y;
+  }
+}
+
+contract ConstructorTest {
+
+  uint it;
+
+  constructor(uint input) public {
+    it = input;
   }
 }
