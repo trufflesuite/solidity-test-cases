@@ -37,7 +37,13 @@ contract ComplexMappingTest {
 
   function returnMappingTest() public {
     returnsMapping(twoMaps)[1] = 8;
+    mapping(uint => uint) storage localMap = twoMaps[1];
+    localMap[3] = 5;
     emit Done();
+  }
+
+  function defaultValue() internal pure returns (uint[2] storage arr) {
+    arr = arr;
   }
 
   function returnsMapping(mapping(uint => uint)[2] storage maps) internal view returns (mapping(uint => uint) storage) {
