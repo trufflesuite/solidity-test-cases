@@ -25,9 +25,9 @@ contract ComplexMappingTest {
   mapping(uint => uint)[2] twoMaps;
 
   function run() public {
-    it[0].map["hello"][1].map["goodbye"] = 107;
-    mapArray[0]["hello"] = 82;
-    mapMap["hello"]["goodbye"] = 683;
+    it[0].map["helloA"][1].map["goodbyeA"] = 107;
+    mapArray[0]["helloB"] = 82;
+    mapMap["helloC"]["goodbyeC"] = 683;
     array[0] = 3;
     simpleMap[array[0]] = 5;
     simpleMap[simpleMap[3]] = 7;
