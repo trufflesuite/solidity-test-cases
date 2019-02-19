@@ -100,7 +100,7 @@ contract ComplexMappingTest {
     mapping(string => mapping(string => string)[2])[] storage entryPoint2 =
       complexStruct.array2;
     entryPoint2[0]["l"][0]["m"] = "20l0m";
-    mapping(string => string) storage dummyPointer2 = complexStruct.array1[0]["l"][0];
+    mapping(string => string) storage dummyPointer2 = complexStruct.array2[0]["l"][0];
 
     //that's it!
     emit Done();
