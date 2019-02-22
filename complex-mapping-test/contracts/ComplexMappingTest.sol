@@ -49,4 +49,17 @@ contract ComplexMappingTest {
   function returnsMapping(mapping(uint => uint)[2] storage maps) internal view returns (mapping(uint => uint) storage) {
     return maps[0];
   }
+
+  function learnAddressTest() public {
+    HasMapTest hasMap = new HasMapTest();
+    emit Done();
+  }
+}
+
+contract HasMapTest {
+  mapping(string => string) theMap;
+
+  constructor() public {
+    theMap["hello"] = "hi";
+  }
 }
