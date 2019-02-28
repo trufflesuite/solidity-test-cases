@@ -62,12 +62,12 @@ contract CalldataTest {
     uint[] calldata manyInts,
     Pair calldata pair)
   external returns (uint sum) {
-      sum = pair.x
-        + twoInts[0]
-        + manyInts.length
-        + deadbeef.length
-        + bytes(hello).length;
-      emit Done();
+    sum = pair.x
+      + twoInts[0]
+      + manyInts.length
+      + deadbeef.length
+      + bytes(hello).length;
+    emit Done();
   }
 
   function multiTester() public {
