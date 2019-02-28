@@ -8,6 +8,8 @@ contract Tester {
 
   address[1] receiver;
 
+  address sender;
+
   uint[2] buffer;
 
   function run() public {
@@ -26,6 +28,15 @@ contract Tester {
     sum = ThisTestLib.add(buffer);
     emit Done();
   }
+
+  function testSender() public {
+    new SenderTest(this);
+  }
+
+  function recordSender() public {
+    sender = msg.sender;
+    emit Done();
+  }
 }
 
 contract ThisTest {
@@ -39,6 +50,16 @@ contract ThisTest {
     emit Done();
   }
 
+}
+
+contract SenderTest {
+
+  SenderTest self;
+
+  constructor(Tester invoker) public {
+    self = this;
+    invoker.recordSender();
+  }
 }
 
 library ThisTestLib {
