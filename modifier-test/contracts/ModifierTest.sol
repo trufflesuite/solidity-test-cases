@@ -67,6 +67,10 @@ contract ModifierTest {
     c = bytes(a).length + bytes(b).length;
   }
 
+  function memtttestLiteral(uint a) public takesTwoMem("hello", "goodbye") returns (uint c) {
+    c = a * 7;
+  }
+
   modifier takesTwoMemRetry(uint[2] memory h, uint[2] memory g) {
     lastBoogly = h[0] + h[1];
     _;
@@ -76,4 +80,38 @@ contract ModifierTest {
   function memtttest2(uint a, uint b) public takesTwoMemRetry([a, b], [a + b, a * b]) returns (uint c) {
     c = a * a + b * b;
   }
+
+  modifier takesStringLast(uint n, string memory s) {
+    emit Greet(s);
+    _;
+    lastBoogly = n;
+  }
+
+  function lastLiteral(uint a) public takesStringLast(a, "hi") returns (uint c) {
+    c = a * 9;
+  }
+
+  modifier takesStringMid(uint n, string memory s, uint m) {
+    emit Greet(s);
+    _;
+    lastBoogly = n + m;
+  }
+
+  function midLiteral(uint a) public takesStringMid(a, "hi", a * a) returns (uint c) {
+    return a * 3;
+  }
+
+  /*
+  modifier inner(string memory s) {
+    emit Greet(s);
+    _;
+    emit Greet(s);
+  }
+
+  modifier outer(string memory s) inner(s) {
+    emit Greet(s);
+    _;
+    emit Greet(s);
+  }
+  */
 }
