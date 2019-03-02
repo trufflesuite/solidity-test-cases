@@ -98,7 +98,15 @@ contract ModifierTest {
   }
 
   function midLiteral(uint a) public takesStringMid(a, "hi", a * a) returns (uint c) {
-    return a * 3;
+    c = a * 3;
+  }
+
+  function twoMods(uint a, string memory s) public takesTwo(a * 2, a * 3) takesTwoMem(s, s) returns (uint c) {
+    c = a * a;
+  }
+
+  function sameMod(uint a) public takesTwo(a * 2, a * 3) takesTwo(a * 5, a * 7) returns (uint c) {
+    c = a * a;
   }
 
   /*
