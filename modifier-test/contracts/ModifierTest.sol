@@ -6,6 +6,8 @@ contract ModifierTest {
 
   uint[2] twoInts;
 
+  uint accumulator;
+
   event SomewhatDone();
 
   event Greet(string greeting);
@@ -101,7 +103,7 @@ contract ModifierTest {
     c = a * 3;
   }
 
-  function twoMods(uint a, string memory s) public takesTwo(a * 2, a * 3) takesTwoMem(s, s) returns (uint c) {
+  function twoMods(uint a, string memory s) public woogly(a * 2) takesTwoMem(s, s) returns (uint c) {
     c = a * a;
   }
 
@@ -122,4 +124,36 @@ contract ModifierTest {
     emit Greet(s);
   }
   */
+
+  modifier runTwice(string memory s) {
+    emit Greet(s);
+    _;
+    emit Greet(s);
+    _;
+    emit Greet(s);
+  }
+
+  function what(uint a, string memory s) public runTwice(s) woogly(a * 3) returns (uint c) {
+    c = a * a;
+  }
+
+  modifier accumulate() {
+    _;
+    accumulator++;
+    _;
+    accumulator++;
+  }
+
+  modifier initialize(uint x) {
+    accumulator = x;
+    _;
+  }
+
+  function returnsWhat(uint start) public initialize(start) accumulate returns (uint c) {
+    return accumulator * accumulator;
+  }
+
+  function receivesWhat() public {
+    lastBoogly = returnsWhat(5);
+  }
 }
