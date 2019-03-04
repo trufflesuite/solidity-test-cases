@@ -156,4 +156,23 @@ contract ModifierTest {
   function receivesWhat() public {
     lastBoogly = returnsWhat(5);
   }
+
+  /*
+  modifier runNever() {
+    emit SomewhatDone();
+  }
+  */
+
+ modifier post(string memory s) {
+   _;
+   emit Greet(s);
+ }
+
+ function simple(uint a) public post("goodbye") returns (uint c) {
+   c = a * 2;
+ }
+
+ function simple2(uint a) public post("goodbye") initialize(a) returns (uint c) {
+   c = a * 2;
+ }
 }
