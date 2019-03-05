@@ -175,4 +175,13 @@ contract ModifierTest {
  function simple2(uint a) public post("goodbye") initialize(a) returns (uint c) {
    c = a * 2;
  }
+
+ modifier pre(string memory s) {
+   emit Greet(s);
+   _;
+ }
+
+ function preTest(uint a) public pre("hello") returns (uint c) {
+   c = a * 2;
+ }
 }
