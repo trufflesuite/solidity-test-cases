@@ -8,6 +8,8 @@ contract ModifierTest {
 
   uint accumulator;
 
+  uint constant three = 3;
+
   event SomewhatDone();
 
   event Greet(string greeting);
@@ -192,5 +194,13 @@ contract ModifierTest {
  function nothingTest(uint a) public nothing() returns (uint c) {
    c = a * 2;
    emit SomewhatDone();
+ }
+
+ function constantTest() public woogly(three) returns (uint c) {
+   c = 7;
+ }
+
+ function castTest(int a) public woogly(uint(a)) returns (int c) {
+   c = a * 2;
  }
 }
