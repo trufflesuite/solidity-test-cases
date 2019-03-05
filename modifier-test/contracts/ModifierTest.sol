@@ -184,4 +184,13 @@ contract ModifierTest {
  function preTest(uint a) public pre("hello") returns (uint c) {
    c = a * 2;
  }
+
+ modifier nothing() {
+   _;
+ }
+
+ function nothingTest(uint a) public nothing() returns (uint c) {
+   c = a * 2;
+   emit SomewhatDone();
+ }
 }
