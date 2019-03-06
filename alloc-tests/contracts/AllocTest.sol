@@ -1,4 +1,4 @@
-pragma solidity ^0.5.3;
+pragma solidity ^0.5.5;
 
 contract AllocTest {
 
@@ -646,10 +646,12 @@ contract AllocTest {
     emit Done();
   }
 
-  function typeCodeTest() internal returns (bytes memory cCode, bytes memory rCode)
+  function typeCodeTest() internal returns (bytes memory cCode, bytes memory rCode, string memory name, string memory test)
   {
     cCode = type(ConstructorTest).creationCode;
     rCode = type(ConstructorTest).runtimeCode;
+    name = type(ConstructorTest).name;
+    test = "alignment test";
     emit Done();
   }
 
