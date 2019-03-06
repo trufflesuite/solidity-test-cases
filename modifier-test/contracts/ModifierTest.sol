@@ -203,4 +203,28 @@ contract ModifierTest {
  function castTest(int a) public woogly(uint(a)) returns (int c) {
    c = a * 2;
  }
+
+ function constantLast(uint a) public takesTwo(a, three) returns (uint c) {
+   c = a * a;
+ }
+
+ modifier takesThree(uint n, uint m, uint k) {
+   lastBoogly = n + m + k;
+   _;
+   lastBoogly = n * m * k;
+ }
+
+ function twoConstantsLast(uint a) public takesThree(a, three, three) returns (uint c) {
+   c = a * 2;
+ }
+
+ modifier stringFirst(string memory s, uint n) {
+   emit Greet(s);
+   _;
+   lastBoogly = n;
+ }
+
+ function literalThenConstant(uint a) public stringFirst("hello", three) returns (uint c) {
+   c = a * 2;
+ }
 }
