@@ -440,6 +440,8 @@ library UsingTestLib {
     f = priv;
     gi = addPublic;
     //ge = UsingTestLib.addPublic;
+    //ge = this.addPublic;
+    //this.addPublic(3,5);
   }
 }
 
