@@ -4,6 +4,8 @@ contract AllocTest {
 
   event Done();
 
+  event Received(bytes, bytes4);
+
   /*
   struct Empty {
   }
@@ -714,6 +716,16 @@ contract AllocTest {
     f = this.w0;
     f();
     emit Done();
+  }
+
+  function() external {
+    bytes memory data = msg.data;
+    bytes4 sig = msg.sig;
+    emit Received(data, sig);
+  }
+
+  function bareCallTest() public returns (bool, bytes memory) {
+    return address(this).call(hex"face");
   }
 
 }
