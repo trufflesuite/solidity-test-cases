@@ -1,4 +1,4 @@
-pragma solidity ^0.5.4;
+pragma solidity ^0.5.6;
 pragma experimental ABIEncoderV2;
 
 //needs testing:
@@ -12,6 +12,7 @@ pragma experimental ABIEncoderV2;
 //7. decode dynamic array
 //8. decode struct
 //9. complex decoding
+//10. complex decoding with dynamic innards!
 
 contract CalldataTest {
 
@@ -30,6 +31,21 @@ contract CalldataTest {
   struct ArrayPair {
     uint[2] x;
     uint[2] y;
+  }
+
+  struct ArrayDynPair {
+    uint[] x;
+    uint[] y;
+  }
+
+  struct StringPair {
+    string x;
+    string y;
+  }
+
+  struct StringPairPair {
+    StringPair x;
+    StringPair y;
   }
 
   //use both with simpleTester and directly
@@ -135,6 +151,101 @@ contract CalldataTest {
     arrayStruct.y[0] = 3;
     arrayStruct.y[1] = 4;
     this.complexTest(structArray, structArrayDyn, structStruct, arrayArray, arrayArrayDyn, arrayStruct);
+  }
+
+  function complexDynTest1(
+    string[2] calldata stringArray,
+    string[] calldata stringArrayDyn,
+    StringPair calldata stringStruct
+  ) external returns (uint sum) {
+    sum = bytes(stringArray[0]).length
+      + stringArrayDyn.length
+      + bytes(stringStruct.x).length;
+    emit Done();
+  }
+
+  function complexDynTester1() public {
+    string[2] memory stringArray;
+    stringArray[0] = "a";
+    stringArray[1] = "bc";
+    string[] memory stringArrayDyn;
+    stringArrayDyn = new string[](2);
+    stringArrayDyn[0] = "a";
+    stringArrayDyn[1] = "bc";
+    StringPair memory stringStruct;
+    stringStruct.x = "a";
+    stringStruct.y = "bc";
+    this.complexDynTest1(
+      stringArray,
+      stringArrayDyn,
+      stringStruct
+    );
+  }
+
+  function complexDynTest2(
+    uint[][2] calldata arrayDynArray,
+    uint[][] calldata arrayDynArrayDyn,
+    ArrayDynPair calldata arrayDynStruct,
+    StringPair[2] calldata structDynArray,
+    StringPair[] calldata structDynArrayDyn,
+    StringPairPair calldata structDynStruct
+  ) external returns (uint sum) {
+    sum = arrayDynArray[0].length
+      + arrayDynArrayDyn.length
+      + arrayDynStruct.x.length
+      + bytes(structDynArray[0].x).length
+      + structDynArrayDyn.length
+      + bytes(structDynStruct.x.x).length;
+    emit Done();
+  }
+
+  function complexDynTester2() public {
+    uint[][2] memory arrayDynArray;
+    arrayDynArray[0] = new uint[](2);
+    arrayDynArray[0][0] = 1;
+    arrayDynArray[0][1] = 2;
+    arrayDynArray[1] = new uint[](2);
+    arrayDynArray[1][0] = 3;
+    arrayDynArray[1][1] = 4;
+    uint[][] memory arrayDynArrayDyn;
+    arrayDynArrayDyn = new uint[][](2);
+    arrayDynArrayDyn[0] = new uint[](2);
+    arrayDynArrayDyn[0][0] = 1;
+    arrayDynArrayDyn[0][1] = 2;
+    arrayDynArrayDyn[1] = new uint[](2);
+    arrayDynArrayDyn[1][0] = 3;
+    arrayDynArrayDyn[1][1] = 4;
+    ArrayDynPair memory arrayDynStruct;
+    arrayDynStruct.x = new uint[](2);
+    arrayDynStruct.x[0] = 1;
+    arrayDynStruct.x[1] = 2;
+    arrayDynStruct.y = new uint[](2);
+    arrayDynStruct.y[0] = 3;
+    arrayDynStruct.y[1] = 4;
+    StringPair[2] memory structDynArray;
+    structDynArray[0].x = "a";
+    structDynArray[0].y = "bc";
+    structDynArray[1].x = "def";
+    structDynArray[1].y = "ghij";
+    StringPair[] memory structDynArrayDyn;
+    structDynArrayDyn = new StringPair[](2);
+    structDynArrayDyn[0].x = "a";
+    structDynArrayDyn[0].y = "bc";
+    structDynArrayDyn[1].x = "def";
+    structDynArrayDyn[1].y = "ghij";
+    StringPairPair memory structDynStruct;
+    structDynStruct.x.x = "a";
+    structDynStruct.x.y = "bc";
+    structDynStruct.y.x = "def";
+    structDynStruct.y.y = "ghij";
+    this.complexDynTest2(
+      arrayDynArray,
+      arrayDynArrayDyn,
+      arrayDynStruct,
+      structDynArray,
+      structDynArrayDyn,
+      structDynStruct
+    );
   }
 }
 
