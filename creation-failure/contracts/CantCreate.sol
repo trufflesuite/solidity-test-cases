@@ -11,7 +11,7 @@ contract MappingMixup {
   mapping(uint => uint) mixup;
 
   constructor(uint n, Tester invoker) public {
-    mixup[n] = 0;
+    mixup[n] = 81;
     if(n > 0) {
       invoker.mixup(n - 1);
     }
