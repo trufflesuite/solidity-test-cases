@@ -67,7 +67,7 @@ library ThisTestLib {
     receiver[0] = address(this);
   }
 
-  function add(uint[2] storage summands) external returns (uint) {
+  function add(uint[2] storage summands) external view returns (uint) {
     return summands[0] + summands[1];
   }
 }

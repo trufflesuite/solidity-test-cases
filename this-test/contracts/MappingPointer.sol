@@ -23,7 +23,26 @@ contract MappingPointerTest {
 }
 
 library TouchLib {
-  function touch(mapping(string => uint) storage surface) public {
+  function touch(mapping(string => uint) storage surface) external {
     surface["ping!"] = 1;
+  }
+
+  function lightTouch(uint[2] storage pair) external view returns (uint) {
+    return pair[0];
+  }
+}
+
+contract PreExisting {
+  uint[2] pair;
+
+  constructor() public {
+    pair[0] = 82;
+  }
+
+  event Done();
+
+  function run() public returns (uint first) {
+    first = TouchLib.lightTouch(pair);
+    emit Done();
   }
 }
