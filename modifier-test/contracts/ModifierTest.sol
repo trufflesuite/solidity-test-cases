@@ -227,4 +227,34 @@ contract ModifierTest {
  function literalThenConstant(uint a) public stringFirst("hello", three) returns (uint c) {
    c = a * 2;
  }
+
+ //tests of how run-twice interacts with local variables
+
+ modifier runMultiple {
+   _;
+   _;
+   uint x = 33;
+   emit SomewhatDone();
+   _;
+ }
+
+ modifier altersVars(uint a, uint b, uint c) {
+   uint x;
+   a = 2 * a + 1; //hypothesis: 1
+   b = 2 * b + 1; //hypothesis: 3
+   c = 2 * c + 1; //hypothesis: 3
+   x = 2 * x + 1; //hypothesis: 1
+   emit SomewhatDone();
+   _;
+   uint y = 33;
+   emit SomewhatDone();
+ }
+
+ function modifiesParameters(uint a) public runMultiple altersVars(0, a, c) returns (uint c) {
+   uint x;
+   a = 2 * a + 1; //hypothesis: 3
+   c = 2 * c + 1; //hypothesis: 3
+   x = 2 * x + 1; //hypothesis: 1
+   emit SomewhatDone();
+ }
 }
