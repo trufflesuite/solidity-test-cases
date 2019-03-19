@@ -728,6 +728,12 @@ contract AllocTest {
     return address(this).call(hex"face");
   }
 
+  function tupleTest() public returns (uint z) {
+    (uint x, uint y) = (3, 5);
+    z = x * y;
+    emit Done();
+  }
+
 }
 
 contract ConstructorTest {
