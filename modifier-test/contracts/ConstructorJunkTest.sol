@@ -5,7 +5,8 @@ contract Base {
   uint it;
 
   constructor(uint x) public {
-    it = x;
+    uint y = x + 1;
+    it = y;
   }
 }
 
