@@ -51,6 +51,16 @@ contract AlignmentTest
     string memory hello = "hello world!";
     emit Done();
   }
+
+  function dataTest(string calldata it) external
+  {
+    bytes memory data = msg.data;
+    string memory hello = "hello";
+    string memory itCopy = it;
+    string memory hello2 = "hello2";
+    bytes memory empty;
+    emit Done();
+  }
 }
 
 contract Child
