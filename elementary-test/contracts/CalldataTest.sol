@@ -8,14 +8,21 @@ contract CalldataTest {
 
   event Done();
 
+  struct HasString {
+    string x;
+  }
+
   function calldataTest(bytes calldata byteStr,
     bytes[2] calldata array,
-    string[] calldata dynArray) external {
+    string[] calldata dynArray,
+    HasString calldata hasString,
+    uint[2] calldata numbers) external {
     bytesMap[byteStr] = byteStr;
     bytesMap[array[0]] = array[0];
     if(dynArray.length > 0) {
       stringMap[dynArray[0]] = dynArray[0];
     }
+    stringMap[hasString.x] = hasString.x;
     stringMap[type(Empty).name] = type(Empty).name;
     uintMap[byteStr.length] = byteStr.length;
     uintMap[array.length] = array.length;
@@ -23,16 +30,19 @@ contract CalldataTest {
     uintMap[array[0].length] = array[0].length;
     uintMap[type(Empty).creationCode.length] = type(Empty).creationCode.length;
     uintMap[msg.data.length] = msg.data.length;
+    uintMap[numbers[0]] = numbers[0];
     bytesMap[msg.data] = msg.data;
     emit Done();
   }
 
   function calldataTester() public {
     bytes[2] memory array;
+    uint[2] memory numbers;
     array[0] = hex"deadbeef";
+    numbers[0] = 82;
     string[] memory dynArray = new string[](3);
     dynArray[0] = "string";
-    this.calldataTest(hex"40", array, dynArray);
+    this.calldataTest(hex"40", array, dynArray, HasString("irrelevant"), numbers);
   }
 }
 
