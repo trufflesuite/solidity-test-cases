@@ -37,6 +37,10 @@ contract Tester {
     sender = msg.sender;
     emit Done();
   }
+
+  function testSenderLib() public {
+    ThisTestLib.testSender(this);
+  }
 }
 
 contract ThisTest {
@@ -69,5 +73,9 @@ library ThisTestLib {
 
   function add(uint[2] storage summands) external view returns (uint) {
     return summands[0] + summands[1];
+  }
+
+  function testSender(Tester invoker) public {
+    invoker.recordSender();
   }
 }
