@@ -5,8 +5,11 @@ contract RevertTest {
   uint x;
   uint y;
 
+  PreExisting pre;
+
   function() external {
     x = 2;
+    y = x;
     revert();
   }
 
@@ -14,6 +17,15 @@ contract RevertTest {
     x = 1;
     address(this).call(hex"");
     y = x;
+  }
+
+  function setup() public {
+    pre = new PreExisting();
+  }
+
+  function runPre() public {
+    address(pre).call(hex"");
+    pre.unrelated();
   }
 }
 
@@ -24,6 +36,7 @@ contract RevertTest2 {
 
   function() external {
     x = 2;
+    y = x;
     assert(false);
   }
 
@@ -31,5 +44,25 @@ contract RevertTest2 {
     x = 1;
     address(this).call.gas(gasleft()/2)(hex"");
     y = x;
+  }
+}
+
+contract PreExisting {
+
+  uint z;
+
+  event Touch(uint);
+
+  constructor() public {
+    z = 100;
+  }
+
+  function() external {
+    emit Touch(z);
+    revert();
+  }
+
+  function unrelated() public {
+    emit Touch(12);
   }
 }
