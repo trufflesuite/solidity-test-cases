@@ -41,4 +41,8 @@ contract Tester {
   function run() public {
     ThisLibraryHasAReallyLongNameWayLongerThanTwiceAWordItWillBeAPainToTypeGoodThingTheresCopyAndPaste.calls();
   }
+
+  function runShort() public {
+    X.calls();
+  }
 }
