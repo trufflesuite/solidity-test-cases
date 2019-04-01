@@ -9,6 +9,11 @@ library ThisLibraryHasAReallyLongNameWayLongerThanTwiceAWordItWillBeAPainToTypeG
   }
 }
 
+library ThisLibraryAlsoHasAReallyLongNameButItDoesntReferToItselfSoMaybeItCanBeDeployed {
+  function run() external {
+  }
+}
+
 //short name tests
 library X {
   function getsCalled() external {
@@ -38,11 +43,19 @@ library $ {
 }
 
 contract Tester {
+  /*
   function run() public {
     ThisLibraryHasAReallyLongNameWayLongerThanTwiceAWordItWillBeAPainToTypeGoodThingTheresCopyAndPaste.calls();
   }
+  */
 
+  function runNoSelfRef() public {
+    ThisLibraryAlsoHasAReallyLongNameButItDoesntReferToItselfSoMaybeItCanBeDeployed.run();
+  }
+
+  /*
   function runShort() public {
     X.calls();
   }
+  */
 }
