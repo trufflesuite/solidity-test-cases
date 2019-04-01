@@ -4,7 +4,7 @@ library ThisLibraryHasAReallyLongNameWayLongerThanTwiceAWordItWillBeAPainToTypeG
   function getsCalled() external {
   }
 
-  function calls() public {
+  function calls() external {
     ThisLibraryHasAReallyLongNameWayLongerThanTwiceAWordItWillBeAPainToTypeGoodThingTheresCopyAndPaste.getsCalled();
   }
 }
@@ -14,7 +14,7 @@ library X {
   function getsCalled() external {
   }
 
-  function calls() public {
+  function calls() external {
     X.getsCalled();
   }
 }
@@ -23,7 +23,7 @@ library _ {
   function getsCalled() external {
   }
 
-  function calls() public {
+  function calls() external {
     _.getsCalled();
   }
 }
@@ -32,7 +32,13 @@ library $ {
   function getsCalled() external {
   }
 
-  function calls() public {
+  function calls() external {
     $.getsCalled();
+  }
+}
+
+contract Tester {
+  function run() public {
+    ThisLibraryHasAReallyLongNameWayLongerThanTwiceAWordItWillBeAPainToTypeGoodThingTheresCopyAndPaste.calls();
   }
 }
