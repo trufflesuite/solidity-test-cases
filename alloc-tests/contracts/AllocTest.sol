@@ -1,4 +1,5 @@
 pragma solidity ^0.5.5;
+pragma experimental ABIEncoderV2;
 
 contract AllocTest {
 
@@ -734,6 +735,16 @@ contract AllocTest {
     emit Done();
   }
 
+  function UDTArgsTest(Pair memory p, Ternary t, address payable a, AllocTest at, Pair[] memory pa) public pure returns (uint) {
+    if(t == Ternary.yes) {
+      return p.x;
+    }
+    if(t == Ternary.no) {
+      return uint(a) + uint(address(at));
+    }
+    return pa.length;
+  }
+
 }
 
 contract ConstructorTest {
@@ -875,3 +886,11 @@ contract DerivedMethodTest is MethodInheritanceTest {
   }
 }
 */
+
+library LibraryABITest {
+  event AnEvent();
+
+  function test() external {
+    emit AnEvent();
+  }
+}
