@@ -890,7 +890,25 @@ contract DerivedMethodTest is MethodInheritanceTest {
 library LibraryABITest {
   event AnEvent();
 
+  struct Tree {
+    Tree[] children;
+  }
+
   function test() external {
     emit AnEvent();
   }
+
+  //memory is a compile error!
+  function calldataTest(bytes calldata cdtest, /*bytes memory memtest,*/ bytes storage stortest) external returns (uint) {
+    emit AnEvent();
+    return cdtest.length + stortest.length;
+  }
+
+  //this doesn't compile as external/calldata or as public/memory
+  /*
+  function treeTest(Tree calldata tree) external returns (uint) {
+    emit AnEvent();
+    return tree.children.length;
+  }
+  */
 }
