@@ -4,7 +4,16 @@ contract Tester {
 
   event Done();
 
+  modifier callFirst(function() external todo) {
+    todo();
+    _;
+  }
+
   function() external storageFn;
+
+  function example() public {
+    emit Done();
+  }
 
   Base c0;
   Base c1;
@@ -28,7 +37,7 @@ contract Tester {
     i2 = new Implementation2();
   }
 
-  function run() public {
+  function run() public callFirst(this.example) {
     function() external[1] memory memoryFns;
     function() external stackFn;
 
