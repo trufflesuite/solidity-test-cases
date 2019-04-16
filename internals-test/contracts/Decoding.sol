@@ -26,11 +26,12 @@ contract DecodingTest is DecodingTestBase {
 
   function() internal conStorageFn;
   function() internal storageFn;
+  function() internal invalidConStorageFn;
 
   function run() public {
     function() internal[1] memory memoryFns;
     function() internal stackFn;
-    
+
     storageFn = run;
     stackFn = run;
     memoryFns[0] = run;
@@ -53,6 +54,8 @@ contract DecodingTest is DecodingTestBase {
   constructor() public {
     function() internal[1] memory memoryFns;
     function() internal stackFn;
+    
+    invalidConStorageFn = stackFn;
     
     conStorageFn = run;
     stackFn = run;
