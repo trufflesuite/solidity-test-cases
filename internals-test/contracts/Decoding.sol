@@ -75,4 +75,10 @@ contract DecodingTest is DecodingTestBase {
 
     emit Log(2);
   }
+
+  function runThrough() public {
+    DecodingTest.inherited();
+    DecodingTestBase.inherited();
+    DecodingTestLib.libraryFn();
+  }
 }
