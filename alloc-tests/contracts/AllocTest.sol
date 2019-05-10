@@ -1,4 +1,4 @@
-pragma solidity ^0.5.5;
+pragma solidity ^0.5.8;
 pragma experimental ABIEncoderV2;
 
 contract AllocTest {
@@ -83,6 +83,12 @@ contract AllocTest {
   mapping(uint => function (uint8) internal) funcMapping;
   Tree tree;
   MappingTree mappingTree;
+  fixed afixed;
+  ufixed aufixed;
+  fixed256x80 bigfixed;
+  ufixed256x80 bigufixed;
+  //fixed256 bigfixed2; //not legal!
+  //ufixed256 bigufixed2; //not legal!
 
   function stackTest(int8 x, int8 y, int8 z) public returns (int8 a, int8 b, int8 c)
   {
