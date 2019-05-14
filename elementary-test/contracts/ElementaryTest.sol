@@ -30,8 +30,8 @@ contract ElementaryTest {
     byteMap[0xff] = 0xff;
     byteMap[byte(0x02)] = byte(0x02);
 
-    bytesMap[hex"01"] = hex"01";
-    bytesMap[hex"ff"] = hex"ff";
+    bytesMap[hex'01'] = hex'01';
+    bytesMap[hex'ff'] = hex'ff';
 
     uintMap[1] = 1;
 
