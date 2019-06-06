@@ -5,6 +5,7 @@ contract OverflowTest {
 
   event BytesEvent(uint8, uint8, uint8, uint8, uint8);
   event ByteEvent(uint8);
+  event SignedEvent(int8);
   event ActualBytesEvent(byte, byte, byte, byte);
 
   function run() public {
@@ -37,5 +38,13 @@ contract OverflowTest {
     byte mix = full ^ addend;
     byte ohno = right << 1;
     emit ActualBytesEvent(left, right, mix, ohno);
+  }
+
+  function signedTest() public {
+    int8 byte1 = -128;
+    int8 byte2 = -128;
+    int8 sum = byte1 + byte2;
+    int8 ohno = sum / 2;
+    emit SignedEvent(ohno);
   }
 }
