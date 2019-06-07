@@ -3,10 +3,12 @@ pragma solidity ^0.5.9;
 contract OverflowTest {
   uint8 storageByte;
 
-  event BytesEvent(uint8, uint8, uint8, uint8, uint8);
+  event BytesEvent(uint8 indexed, uint8, uint8, uint8, uint8 indexed);
   event ByteEvent(uint8);
   event SignedEvent(int8);
   event ActualBytesEvent(byte, byte, byte, byte);
+
+  mapping(uint8 => uint8) byteMap;
 
   function run() public {
     uint8[1] memory memoryByte;
@@ -46,5 +48,12 @@ contract OverflowTest {
     int8 sum = byte1 + byte2;
     int8 ohno = sum / 2;
     emit SignedEvent(ohno);
+  }
+
+  function mappingTest() public {
+    uint8 byte1 = 255;
+    uint8 byte2 = 255;
+    uint8 sum = byte1 + byte2;
+    byteMap[sum] = 1;
   }
 }
