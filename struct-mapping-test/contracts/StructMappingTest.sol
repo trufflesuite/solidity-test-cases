@@ -14,3 +14,16 @@ contract StructMappingTest {
     manyMaps[0]["foo"] = "bar";
   }
 }
+
+contract EmptyStructTest {
+  struct EmptyStruct {
+    mapping(string => string) theMap;
+  }
+  function run() public {
+    int[1] memory preBarrier;
+    preBarrier[0] = -1;
+    EmptyStruct[3] memory whoKnows;
+    int[1] memory postBarrier;
+    postBarrier[0] = -1;
+  }
+}
