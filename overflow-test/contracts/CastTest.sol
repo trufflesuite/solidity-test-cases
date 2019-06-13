@@ -33,4 +33,13 @@ contract CastTest {
     CastTest cast = CastTest(sum);
     emit contractEvent(cast);
   }
+
+  function functionTest() public {
+    uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
+    uint160 integer2 = 1;
+    uint160 sum = integer1 + integer2;
+    CastTest cast = CastTest(sum);
+    function() external fn = cast.functionTest;
+    //I'd emit fn but that'd cause a problem :P
+  }
 }

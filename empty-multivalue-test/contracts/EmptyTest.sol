@@ -42,3 +42,41 @@ contract MultiEmptyTest {
     postBarrierMem[0] = -1;
   }
 }
+
+contract CallEmptyTest {
+
+  event ShowInput(bytes);
+
+  function forCallingStatic(int preBarrier, uint[0] emptyArray, int postBarrier) external {
+    emit ShowInput(msg.data);
+  }
+
+  function forCallingDynamic(string preBarrier, uint[0] emptyArray, string postBarrier) external {
+    emit ShowInput(msg.data);
+  }
+
+  function run() public {
+    uint[0] memory emptyArray;
+    this.forCallingStatic(-1, emptyArray, -1);
+    this.forCallingDynamic("hello", emptyArray, "goodBye");
+  }
+}
+
+contract EmptyMultiTest {
+  struct Pair {
+    uint x;
+    uint y;
+  }
+
+  int preBarrier;
+  Pair[0] noPair;
+  int midBarrier;
+  uint[2][0] noArray;
+  int postBarrier;
+
+  function run() public {
+    preBarrier = -1;
+    midBarrier = -1;
+    postBarrier = -1;
+  }
+}
