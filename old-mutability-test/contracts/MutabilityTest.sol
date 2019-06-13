@@ -16,6 +16,10 @@ contract MutabilityTest {
 
  function() external constant notConstant = this.constant1;
 
+ function() external payable thisIsPayable;
+
+ function() external thisIsNotPayable;
+
  function constant1() external constant {
  }
 
