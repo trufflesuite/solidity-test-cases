@@ -4,6 +4,9 @@ contract ConstantsTest {
 
   event Done();
 
+  mapping(uint => uint) constantKeys;
+  mapping(address => address) addressKeys;
+
   enum TriState {
     yes, no, maybeSo
   }
@@ -31,6 +34,17 @@ contract ConstantsTest {
   ConstantsTest constant contractExpression = false ? ConstantsTest(0x0000000000000000000000000000000000000001) : ConstantsTest(0x0000000000000000000000000000000000000002);
 
   function run() public {
+    emit Done();
+  }
+
+  function mappingTest() public {
+    constantKeys[one] = one;
+    constantKeys[simpleIntExpression] = simpleIntExpression;
+    constantKeys[intExpression] = intExpression;
+
+    addressKeys[addressExpression] = addressExpression;
+    addressKeys[addressOne] = addressOne;
+
     emit Done();
   }
 }
