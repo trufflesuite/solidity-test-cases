@@ -7,6 +7,7 @@ var EmitsLibraries = artifacts.require("EmitsLibraries");
 var TheContract = artifacts.require("TheContract");
 var Library1 = artifacts.require("Library1");
 var Library2 = artifacts.require("Library2");
+var MinimalFunctionTest = artifacts.require("MinimalFunctionTest");
 
 module.exports = function(deployer) {
   deployer.deploy(EventsTest);
@@ -21,4 +22,5 @@ module.exports = function(deployer) {
   deployer.link(Library1, TheContract);
   deployer.link(Library2, TheContract);
   deployer.deploy(TheContract);
+  deployer.deploy(MinimalFunctionTest);
 };
