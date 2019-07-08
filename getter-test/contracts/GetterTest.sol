@@ -1,4 +1,4 @@
-pragma solidity ^0.5.5;
+pragma solidity ^0.5.10;
 pragma experimental ABIEncoderV2;
 
 contract GetterTest {
@@ -21,6 +21,16 @@ contract GetterTest {
   struct HasMapping {
     bytes32 x;
     mapping(string => uint) xs;
+  }
+
+  struct HasStructWithArray {
+    bytes32 x;
+    HasArray xs;
+  }
+
+  struct HasStructWithMapping {
+    bytes32 x;
+    HasMapping xs;
   }
 
   //trivial case
@@ -54,6 +64,10 @@ contract GetterTest {
   HasStruct public structStruct; //returns bytes32 and Pair memory (!)
   //mapping-in-struct
   HasMapping public mappingStruct; //MAPPING IS OMITTED (!)
+  //array-in-struct-in-struct
+  HasStructWithArray public arrayStructStruct; //ARRAY INCLUDED IN STRUCT (!)
+  //mapping-in-struct-in-struct
+  //HasStructWithMapping public mappingStructStruct; //FORBIDDEN (!)
   //now let's try constants
   uint constant public three = 3; //works fine as expected
   //Q: can we use a constant getter in another constant?
@@ -77,5 +91,7 @@ contract GetterTest {
     this.arrayStruct;
     this.structStruct;
     this.mappingStruct;
+
+    this.arrayStructStruct;
   }
 }
