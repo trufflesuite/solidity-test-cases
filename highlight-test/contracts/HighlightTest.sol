@@ -3,6 +3,9 @@ pragma experimental ABIEncoderV2; //for dynamicing
 
 contract HighlightTest { //for highlighting
 
+  string split = "look\
+look"; //looklook!
+
   mapping(string => uint) public mapper; //for mapping
 
   event Fooft(string s, address it); //for emitting
