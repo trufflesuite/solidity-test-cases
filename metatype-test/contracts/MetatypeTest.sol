@@ -6,7 +6,7 @@ contract MetatypeTest {
 
   function runSimple() public returns (bytes memory cCode, bytes memory rCode, string memory name) {
     cCode = type(MetatypeLibrarySimple).creationCode;
-    rCode = type(MetatypeLibrarySimple).runtimeCode;
+    rCode = type(MetatypeLibrarySimple).runtimeCode; //does not require linking; has 0s in the delegatecall guard!
     name = type(MetatypeLibrarySimple).name;
     emit Done();
   }
