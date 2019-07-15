@@ -6,6 +6,7 @@ var Tester2 = artifacts.require("Tester2");
 var Tester3 = artifacts.require("Tester3");
 var Fail = artifacts.require("Fail");
 var Return = artifacts.require("Return");
+var ErrorError = artifacts.require("ErrorError");
 
 module.exports = function(deployer) {
   deployer.deploy(CreateReturnTest);
@@ -16,4 +17,5 @@ module.exports = function(deployer) {
   deployer.deploy(Tester3);
   deployer.deploy(Fail);
   deployer.deploy(Return);
+  deployer.deploy(ErrorError);
 };
