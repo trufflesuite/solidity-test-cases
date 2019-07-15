@@ -17,7 +17,17 @@ contract ErrorError {
   }
 
   function utf8() public {
-    revert(string(hex'c2a1c2a1c2a1'));
+    revert('\u00a1\u00a1\u00a1');
+  }
+
+  function trailingNull() public {
+    revert('!!!\x00');
+  }
+
+  /* somewhere inbetween */
+
+  function isoVsCpDistinguisher() public {
+    revert('\u0083');
   }
 
   /* the experimental group */
@@ -72,7 +82,7 @@ contract ErrorError {
     assembly {
       mstore(0x80, 0x0000000000000000000000000000000000000000000000000000000008c379a0)
       mstore(0xA0, 0x0000000000000000000000000000000000000000000000000000000000000020)
-      mstore(0xC0, 0x0000000000000000000000000000000000000000000000000000000000000021) //length, not '!'
+      mstore(0xC0, 0x0000000000000000000000000000000000000000000000000000000000000040)
       mstore(0xE0, 0x2121212121212121212121212121212121212121212121212121212121212121)
       revert(0x9C, 0x64)
     }
@@ -155,4 +165,15 @@ contract ErrorError {
       revert(0x9C, 0x24)
     }
   }
+
+  function wayOverlong() public {
+    assembly {
+      mstore(0x80, 0x0000000000000000000000000000000000000000000000000000000008c379a0)
+      mstore(0xA0, 0x0000000000000000000000000000000000000000000000000000000000000020)
+      mstore(0xC0, 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+      mstore(0xE0, 0x2121212121212121212121212121212121212121212121212121212121212121)
+      revert(0x9C, 0x64)
+    }
+  }
+
 }
