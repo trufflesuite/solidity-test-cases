@@ -78,4 +78,39 @@ contract EchoTest {
   function echoEnumsNoCopyOnly(Ternary[] calldata x) external {
     emit EchoEnums(x);
   }
+
+  mapping(bool => string) boolMap;
+
+  event EchoTestString(string);
+
+  function clearMap() public {
+    delete boolMap[true];
+    delete boolMap[false];
+  }
+
+  function boolKeyTest(bool x) public {
+    boolMap[x] = "this here is a test!";
+    string memory read = boolMap[x];
+    emit EchoTestString(read);
+  }
+
+  function boolsKeyTest(bool[] memory x) public {
+    boolMap[x[0]] = "test directly";
+    string memory read1 = boolMap[x[0]];
+    emit EchoTestString(read1);
+    bool extracted = x[0];
+    boolMap[extracted] = "test w/extraction";
+    string memory read2 = boolMap[extracted];
+    emit EchoTestString(read2);
+  }
+
+  function boolsKeyTestNoCopy(bool[] calldata x) external {
+    boolMap[x[0]] = "test directly";
+    string memory read1 = boolMap[x[0]];
+    emit EchoTestString(read1);
+    bool extracted = x[0];
+    boolMap[extracted] = "test w/extraction";
+    string memory read2 = boolMap[extracted];
+    emit EchoTestString(read2);
+  }
 }
