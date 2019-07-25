@@ -45,4 +45,37 @@ contract EchoTest {
     byte extracted = x[0];
     emit EchoByte(extracted);
   }
+
+  enum Ternary {
+    True,
+    False,
+    FileNotFound
+  }
+
+  event EchoEnums(Ternary[]);
+  event EchoEnum(Ternary);
+
+  function echoEnum(Ternary x) public {
+    emit EchoEnum(x);
+  }
+
+  function echoEnumsOnly(Ternary[] memory x) public {
+    emit EchoEnums(x);
+  }
+
+  function echoEnums(Ternary[] memory x) public {
+    emit EchoEnums(x);
+    Ternary extracted = x[0];
+    emit EchoEnum(extracted);
+  }
+
+  function echoEnumsNoCopy(Ternary[] calldata x) external {
+    emit EchoEnums(x);
+    Ternary extracted = x[0];
+    emit EchoEnum(extracted);
+  }
+
+  function echoEnumsNoCopyOnly(Ternary[] calldata x) external {
+    emit EchoEnums(x);
+  }
 }
