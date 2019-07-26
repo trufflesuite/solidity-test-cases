@@ -27,3 +27,35 @@ contract Derived is Base {
     //g = Derived.this.doStuff; //??
   }
 }
+
+contract BaseEmitter {
+
+  event Name(string);
+
+  function run() public {
+    emitName();
+  }
+
+  function emitName() public {
+    emit Name("BaseEmitter");
+  }
+
+  /*
+  function extOver() external {
+    emit Name("BaseEmitter");
+  }
+  */
+}
+
+contract DerivedEmitter is BaseEmitter {
+  function emitName() public {
+    emit Name("DerivedEmitter");
+  }
+
+  /*
+  function extOver() external {
+    emit Name("DerivedEmitter");
+    super.extOver();
+  }
+  */
+}
