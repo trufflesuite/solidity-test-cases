@@ -3,9 +3,13 @@ pragma solidity ^0.5.10;
 contract Base {
   uint x;
   uint y;
+  uint z;
+  uint private w;
 
   constructor() public {
     x = 107;
+    z = 321;
+    w = 9;
   }
 }
 
