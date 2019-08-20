@@ -62,4 +62,8 @@ contract EventsTest {
     emit takesStaticArray([uint(3), 70]);
     emit takesStruct(Pair(40, 6));
   }
+
+  function causeProblems() public {
+    emit takesFunction(this.causeProblems);
+  }
 }
