@@ -17,11 +17,16 @@ contract Derived is Base {
   uint private myHidden;
   uint public myImpossibleToMiss;
 
-  function run() public {
+  function run() public returns (uint out) {
+
+    uint local = 372;
+
     myVisible = 102;
     myHidden = 27;
     myImpossibleToMiss = 88888;
     visible = 47;
     impossibleToMiss = 9999999999;
+    
+    out = local;
   }
 }
