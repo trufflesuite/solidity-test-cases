@@ -49,4 +49,10 @@ contract Tester {
   function testLength() public {
     emit Word(HasPure.getLengthAsBytes(arr));
   }
+
+  /*
+  function testStore() public returns (function(bytes32) external pure returns (bytes32)) {
+    return HasPure.flip;
+  }
+  */
 }
