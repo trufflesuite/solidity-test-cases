@@ -9,6 +9,7 @@ contract CastTest {
   event enumEvent(Ternary indexed);
   event addressEvent(address indexed);
   event contractEvent(CastTest indexed);
+  event functionEvent(function() external); //not indexed due to Solidity bug!
 
   function enumTest() public {
     uint8 byte1 = 0xff;
@@ -40,6 +41,6 @@ contract CastTest {
     uint160 sum = integer1 + integer2;
     CastTest cast = CastTest(sum);
     function() external fn = cast.functionTest;
-    //I'd emit fn but that'd cause a problem :P
+    emit functionEvent(fn);
   }
 }
