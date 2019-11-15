@@ -8,6 +8,7 @@ var Fail = artifacts.require("Fail");
 var Return = artifacts.require("Return");
 var ErrorError = artifacts.require("ErrorError");
 var Utf8Test = artifacts.require("Utf8Test");
+var DecodingTestLibrary = artifacts.require("DecodingTestLibrary");
 
 module.exports = function(deployer) {
   deployer.deploy(CreateReturnTest);
@@ -20,4 +21,5 @@ module.exports = function(deployer) {
   deployer.deploy(Return);
   deployer.deploy(ErrorError);
   deployer.deploy(Utf8Test);
+  deployer.deploy(DecodingTestLibrary);
 };
