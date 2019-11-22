@@ -1,0 +1,2 @@
+Biggest number I can square at default gas settings:
+0xFF8103 = 16,744,707
