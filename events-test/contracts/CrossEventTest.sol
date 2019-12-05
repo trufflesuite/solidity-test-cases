@@ -3,11 +3,13 @@ pragma solidity ^0.5.13;
 contract Base {
   event baseEvent(uint);
   event bothEvent(uint);
+  event nonOverride();
 }
 
 contract Derived is Base {
   event bothEvent(uint indexed);
   event derivedEvent(uint indexed);
+  event nonOverride(uint);
   function run() public {
     emit baseEvent(1);
     emit Base.baseEvent(2);
@@ -16,6 +18,8 @@ contract Derived is Base {
     emit Derived.bothEvent(5);
     emit derivedEvent(6);
     emit Derived.derivedEvent(7);
+    emit nonOverride();
+    emit nonOverride(8);
   }
 }
 
