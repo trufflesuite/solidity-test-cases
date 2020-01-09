@@ -52,9 +52,11 @@ contract ModifierTest {
   }
 
   modifier takesTwo(uint x, uint y) {
-    lastBoogly = x + y;
+    uint temp = x + y;
+    lastBoogly = temp;
     _;
-    lastBoogly = x * y;
+    temp = x * y;
+    lastBoogly = temp;
   }
 
   function tttest(uint a, uint b) public takesTwo(a + b, a * b) returns (uint c) {
