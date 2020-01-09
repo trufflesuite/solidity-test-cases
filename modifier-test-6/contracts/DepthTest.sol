@@ -56,3 +56,22 @@ contract DepthTest {
     emit Body();
   }
 }
+
+contract Grandparent {
+  uint store;
+  constructor(uint x) public {
+    store = x;
+  }
+}
+
+contract Parent is Grandparent(5) {
+  constructor() public {
+    store++;
+  }
+}
+
+contract ConstructorDepthTest is Parent {
+  constructor() public {
+    store *= 2;
+  }
+}
