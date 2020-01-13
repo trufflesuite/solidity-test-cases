@@ -57,21 +57,40 @@ contract DepthTest {
   }
 }
 
-contract Grandparent {
+contract GrandparentUpTop {
   uint store;
   constructor(uint x) public {
     store = x;
   }
 }
 
-contract Parent is Grandparent(5) {
+contract ParentUpTop is GrandparentUpTop(5) {
   constructor() public {
     store++;
   }
 }
 
-contract ConstructorDepthTest is Parent {
+contract ConstructorDepthTestUpTop is ParentUpTop {
   constructor() public {
     store *= 2;
+  }
+}
+
+contract GrandparentDownBelow {
+  uint store;
+  constructor(uint x) public {
+    store = x;
+  }
+}
+
+contract ParentDownBelow is GrandparentDownBelow {
+  constructor() public GrandparentDownBelow(5) {
+    store++;
+  }
+}
+
+contract ConstructorDepthTestDownBelow is ParentDownBelow {
+  constructor(uint coeff) public {
+    store *= coeff;
   }
 }
