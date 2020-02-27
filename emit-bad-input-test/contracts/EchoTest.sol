@@ -1,4 +1,4 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.6.0;
 
 contract EchoTest {
 
@@ -79,7 +79,15 @@ contract EchoTest {
     emit EchoEnums(x);
   }
 
-  mapping(bool => string) boolMap;
+  mapping(bool => string) public boolMap;
+
+  function writeTo(bool x) public {
+    boolMap[x] = "written!";
+  }
+
+  function readFrom(bool x) public view returns (string memory) {
+    return boolMap[x];
+  }
 
   event EchoTestString(string);
 
