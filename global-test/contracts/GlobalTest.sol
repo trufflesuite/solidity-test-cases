@@ -1,4 +1,4 @@
-pragma solidity ^0.5.6;
+pragma solidity ^0.6.4;
 
 contract GlobalTest {
 
@@ -41,10 +41,10 @@ contract GlobalTest {
   }
 
   function runRun(uint x) public payable {
-    this.run.value(msg.value / 2)(x);
+    this.run{value: msg.value / 2}(x);
   }
 
-  function() external payable {
+  fallback() external payable {
     _this = this;
     _now = now;
     _msg = Msg(msg.data, msg.sender, msg.sig, msg.value);
@@ -56,7 +56,7 @@ contract GlobalTest {
 
   function runFallback() public payable {
     (bool status, bytes memory result) =
-      address(this).call.value(msg.value / 2)(hex"face");
+      address(this).call{value: msg.value / 2}(hex"face");
     emit Done(status ? result.length : 0);
   }
 
@@ -85,7 +85,16 @@ contract GlobalTest {
   }
 
   function runCreate(uint x) public payable {
-    (new CreationTest).value(msg.value / 2)(x);
+    new CreationTest{value: msg.value / 2}(x, true);
+  }
+
+  function runFailedCreate2(uint x) public payable {
+    try new CreationTest{
+      value: msg.value / 2,
+      salt: 0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+    }(x, false) {
+    } catch (bytes memory) {
+    }
   }
 }
 
@@ -98,13 +107,14 @@ contract CreationTest {
 
   event Done(uint x);
 
-  constructor(uint x) public payable {
+  constructor(uint x, bool succeed) public payable {
     _this = this;
     _now = now;
     _msg = GlobalTest.Msg(msg.data, msg.sender, msg.sig, msg.value);
     _tx = GlobalTest.Tx(tx.origin, tx.gasprice);
     _block = GlobalTest.Block(block.coinbase, block.difficulty,
       block.gaslimit, block.number, block.timestamp);
+    require(succeed);
     emit Done(x);
   }
 }
@@ -117,15 +127,12 @@ library GlobalTestLib {
     GlobalTest.Msg memory __msg;
     GlobalTest.Tx memory __tx;
     GlobalTest.Block memory __block;
-    GlobalTestLib __this;
     uint __now;
-    __this = this;
     __now = now;
     __msg = GlobalTest.Msg(msg.data, msg.sender, msg.sig, msg.value);
     __tx = GlobalTest.Tx(tx.origin, tx.gasprice);
     __block = GlobalTest.Block(block.coinbase, block.difficulty,
       block.gaslimit, block.number, block.timestamp);
-    emit Done(x + uint(address(__this)) + __now
-      + __msg.value + __tx.gasprice + __block.number);
+    emit Done(x + __now + __msg.value + __tx.gasprice + __block.number);
   }
 }
