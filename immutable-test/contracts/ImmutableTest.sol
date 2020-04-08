@@ -13,6 +13,7 @@ contract ImmutableTest {
   
   //note: setting them here is legal!
   uint immutable konstant;
+  int8 immutable signed;
   bool immutable verity = true;
   byte immutable key;
   address immutable origin;
@@ -22,6 +23,7 @@ contract ImmutableTest {
   //function() external immutable universal; //not supported yet!
 
   event Uint(uint);
+  event Int(int8);
   event Bool(bool);
   event Byte(byte);
   event Address(address);
@@ -41,12 +43,14 @@ contract ImmutableTest {
     self = this;
     fact = Ternary.MaybeSo;
     theThing = doStuff;
+    signed = -1;
     emit String(hi);
     emit String(bye);
   }
 
   function run() public {
     emit Uint(konstant);
+    emit Int(signed);
     emit Bool(verity);
     emit Byte(key);
     emit Address(origin);
