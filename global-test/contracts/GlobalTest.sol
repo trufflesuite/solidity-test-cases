@@ -28,7 +28,7 @@ contract GlobalTest {
   Tx _tx;
   Block _block;
   GlobalTest _this;
-  uint _now;
+  uint public _now;
 
   function run(uint x) public payable {
     _this = this;
@@ -54,9 +54,25 @@ contract GlobalTest {
     emit Done(0);
   }
 
+  receive() external payable {
+    _this = this;
+    _now = now;
+    _msg = Msg(msg.data, msg.sender, msg.sig, msg.value);
+    _tx = Tx(tx.origin, tx.gasprice);
+    _block = Block(block.coinbase, block.difficulty,
+      block.gaslimit, block.number, block.timestamp);
+    emit Done(0);
+  }
+
   function runFallback() public payable {
     (bool status, bytes memory result) =
       address(this).call{value: msg.value / 2}(hex"face");
+    emit Done(status ? result.length : 0);
+  }
+
+  function runReceive() public payable {
+    (bool status, bytes memory result) =
+      address(this).call{value: msg.value / 2}(hex"");
     emit Done(status ? result.length : 0);
   }
 
@@ -86,6 +102,10 @@ contract GlobalTest {
 
   function runCreate(uint x) public payable {
     new CreationTest{value: msg.value / 2}(x, true);
+  }
+
+  function runGetter() public {
+    emit Done(this._now());
   }
 
   function runFailedCreate2(uint x) public payable {
