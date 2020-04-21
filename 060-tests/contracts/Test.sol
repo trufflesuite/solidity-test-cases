@@ -15,6 +15,7 @@ enum Ternary {
 }
 
 abstract contract AbstractTest {
+  uint someState;
   function doNothing() public virtual;
 }
 
