@@ -4,6 +4,6 @@ const StacktraceTest = artifacts.require("StacktraceTest");
 contract("StacktraceTest", function(accounts) {
   it("fails! hahahaha", async function() {
     let instance = await StacktraceTest.deployed();
-    await instance.run(0);
+    await instance.run(2); //leaves a message
   });
 });
