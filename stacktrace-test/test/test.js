@@ -6,4 +6,7 @@ contract("StacktraceTest", function(accounts) {
     let instance = await StacktraceTest.deployed();
     await instance.run(2); //leaves a message
   });
+  it("fails on deployment!", async function() {
+    await StacktraceTest.new(false);
+  });
 });
