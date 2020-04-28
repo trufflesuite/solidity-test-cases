@@ -2,12 +2,10 @@ const util = require("util");
 const StacktraceTest = artifacts.require("StacktraceTest");
 
 contract("StacktraceTest", function(accounts) {
-  /*
-  it("succeeds & prints txHash", async function() {
+  it("succeed", async function() {
     let instance = await StacktraceTest.deployed();
-    instance.run(12).on("transactionHash", console.log);
+    await instance.run(12);
   });
-  */
   it("fails! hahahaha", async function() {
     let instance = await StacktraceTest.deployed();
     await instance.run(2); //leaves a message
@@ -21,5 +19,13 @@ contract("StacktraceTest", function(accounts) {
   });
   it("SDs on deployment!", async function() {
     await StacktraceTest.new(1);
+  });
+});
+
+contract("StacktraceTest Part 2", function(accounts) {
+  it("succeeds", async function() {
+    let instance = await StacktraceTest.deployed();
+    let deferred = instance.run(12);
+    let receipt = await deferred;
   });
 });
