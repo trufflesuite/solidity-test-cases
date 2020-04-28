@@ -12,6 +12,10 @@ contract("StacktraceTest", function(accounts) {
     let instance = await StacktraceTest.deployed();
     await instance.run(2); //leaves a message
   });
+  it("fails with extra info", async function() {
+    let instance = await StacktraceTest.deployed();
+    await instance.run(4); //leaves a message
+  });
   it("fails on deployment!", async function() {
     await StacktraceTest.new(false);
   });
