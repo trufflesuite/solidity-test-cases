@@ -8,8 +8,11 @@ contract StacktraceTest {
 
   function() internal zero;
 
-  constructor(bool status) public payable {
-    assert(status);
+  constructor(uint x) public payable {
+    if(x == 1) {
+      selfdestruct(tx.origin);
+    }
+    assert(x == 0);
   }
 
   function run(uint fnId) public {

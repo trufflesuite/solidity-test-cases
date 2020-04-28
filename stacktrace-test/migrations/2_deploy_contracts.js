@@ -1,5 +1,5 @@
 var StacktraceTest = artifacts.require("StacktraceTest");
 
 module.exports = function(deployer) {
-  deployer.deploy(StacktraceTest, true, { value: 1} );
+  deployer.deploy(StacktraceTest, 0, { value: 1} );
 };

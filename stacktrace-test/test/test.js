@@ -17,6 +17,9 @@ contract("StacktraceTest", function(accounts) {
     await instance.run(4); //leaves a message
   });
   it("fails on deployment!", async function() {
-    await StacktraceTest.new(false);
+    await StacktraceTest.new(2);
+  });
+  it("SDs on deployment!", async function() {
+    await StacktraceTest.new(1);
   });
 });
