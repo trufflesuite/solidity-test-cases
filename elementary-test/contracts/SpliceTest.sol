@@ -1,4 +1,4 @@
-pragma solidity ^0.5.3;
+pragma solidity ^0.6.6;
 
 contract SpliceTest {
   //splicing is (nontrivially) used in two contexts right now:

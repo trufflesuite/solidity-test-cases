@@ -1,4 +1,4 @@
-pragma solidity ^0.5.6;
+pragma solidity ^0.6.6;
 pragma experimental ABIEncoderV2;
 
 contract CalldataTest {
@@ -32,6 +32,7 @@ contract CalldataTest {
     uintMap[msg.data.length] = msg.data.length;
     uintMap[numbers[0]] = numbers[0];
     bytesMap[msg.data] = msg.data;
+    bytesMap[bytes(byteStr[2:6])] = bytes(byteStr[2:6]);
     emit Done();
   }
 
@@ -42,7 +43,7 @@ contract CalldataTest {
     numbers[0] = 82;
     string[] memory dynArray = new string[](3);
     dynArray[0] = "string";
-    this.calldataTest(hex"40", array, dynArray, HasString("irrelevant"), numbers);
+    this.calldataTest(hex"0123456789abcdef", array, dynArray, HasString("irrelevant"), numbers);
   }
 }
 
