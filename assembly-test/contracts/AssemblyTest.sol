@@ -3,7 +3,7 @@ contract AssemblyTest {
     assembly {
       switch pair_offset
       case 0 {
-        let p.add := add(msize, 32)
+        let p.add := add(msize(), 32)
         mstore(p.add,add(sload(pair_slot), sload(add(pair_slot,1))))
         return(p.add,32)
       }
@@ -15,7 +15,7 @@ contract AssemblyTest {
         */
       }
       default {
-        let add. := add(msize, 32)
+        let add. := add(msize(), 32)
         mstore(add.,"???")
         revert(add.,3)
       }
