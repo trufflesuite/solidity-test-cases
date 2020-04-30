@@ -15,6 +15,7 @@ contract ScopesTest {
         c := add(a,b)
         d := sub(a,b)
       }
+      let z, w := complex(7, 8)
     }
   }
 }
