@@ -1,3 +1,5 @@
+pragma solidity ^0.6.0;
+
 contract TwoTest {
 
   uint8 x;

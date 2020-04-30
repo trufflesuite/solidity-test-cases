@@ -1,3 +1,5 @@
+pragma solidity ^0.6.0;
+
 contract AssemblyTest {
   function run(uint[2] storage pair) view internal {
     assembly {
