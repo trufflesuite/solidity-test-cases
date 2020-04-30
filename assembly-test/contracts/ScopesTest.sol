@@ -1,5 +1,6 @@
 contract ScopesTest {
   function doNothing() public {
+    uint woozle;
     assembly {
       function noop() {
       }
@@ -16,6 +17,9 @@ contract ScopesTest {
         d := sub(a,b)
       }
       let z, w := complex(7, 8)
+      woozle := address()
+      stop()
+      selfdestruct(woozle) //don't actually selfdestruct
     }
   }
 }
