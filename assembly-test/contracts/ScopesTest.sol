@@ -8,11 +8,11 @@ contract ScopesTest {
   function run() public {
     uint woozle = 70;
     assembly {
-      function noop() {
+      function noop(nothing) -> void {
       }
       let u
       let v
-      noop()
+      pop(noop(u))
       let s
       let t
       let x := 1
@@ -68,11 +68,10 @@ contract ScopesTest {
       k := simple2(fix2)
       z, w := complex(12, 20)
       woozle := address()
-      stop()
-      selfdestruct(woozle) //don't actually selfdestruct
-      //selfdestruct(complex) //compile error!
+      pop(woozle) //don't actually selfdestruct
+      //pop(complex) //compile error!
       //let fn := complex
-      //selfdestruct(run)
+      //pop(run)
       //let fn := run
       //run()
     }
