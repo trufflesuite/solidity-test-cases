@@ -17,7 +17,7 @@ contract ScopesTest {
       let t
       let x := 1
       { 
-        let y := 2
+        let y := 0x2
         let j := y
         let p := add(y, 1)
         let q := woozle
@@ -25,7 +25,7 @@ contract ScopesTest {
       }
       //let n, m := 90, 91
       //let n, m := (90, 91)
-      for { let i := 3 x := 40 } lt(i, 5) { i := add(i, 1) } {
+      for { let i := 3 x := "A" } lt(i, 5) { i := add(i, 1) } {
         log1(0, 0, i)
       }
       function complex(a, b) -> c, d {
