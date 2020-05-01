@@ -25,7 +25,7 @@ contract ScopesTest {
       }
       //let n, m := 90, 91
       //let n, m := (90, 91)
-      for { let i := 3 x := "A" } lt(i, 5) { i := add(i, 1) } {
+      for { let i := 3 x := "\xff" } lt(i, 5) { i := add(i, 1) } {
         log1(0, 0, i)
       }
       function complex(a, b) -> c, d {
