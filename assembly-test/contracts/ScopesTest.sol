@@ -11,10 +11,13 @@ contract ScopesTest {
       function noop(nothing) -> void {
       }
       let u
+      u := 128
       let v
+      v := 256
       pop(noop(u))
-      let s
-      let t
+      let s, t
+      s := 80
+      t := 88
       let x := 1
       { 
         let y := 0x2
