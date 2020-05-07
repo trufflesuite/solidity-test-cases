@@ -8,6 +8,7 @@ contract ScopesTest {
       }
       noop()
       let x := 1
+      let fuvwy
       { 
         let y := 2
 	y := add(y,1)
