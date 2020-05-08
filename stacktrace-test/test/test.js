@@ -2,9 +2,14 @@ const util = require("util");
 const StacktraceTest = artifacts.require("StacktraceTest");
 
 contract("StacktraceTest", function(accounts) {
-  it("succeed", async function() {
+  it("succeeds", async function() {
     let instance = await StacktraceTest.deployed();
     await instance.run(12);
+  });
+  it("succeeds but fails anyway", async function() {
+    let instance = await StacktraceTest.deployed();
+    await instance.run(12);
+    assert(false);
   });
   it("fails! hahahaha", async function() {
     let instance = await StacktraceTest.deployed();
