@@ -1,4 +1,4 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.6.7;
 
 contract Tester1 {
 
@@ -117,7 +117,7 @@ contract Tester1 {
 }
 
 contract Tester2 {
-  function() external {
+  fallback() external {
   }
 
   function notCalled() public payable {
@@ -129,7 +129,7 @@ contract Boom {
     selfdestruct(address(this));
   }
 
-  function() external payable {
+  fallback() external payable {
   }
 }
 

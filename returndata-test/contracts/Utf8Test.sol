@@ -1,4 +1,4 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.6.7;
 
 contract Utf8Test {
   function run() public pure returns (string memory) {

@@ -1,4 +1,4 @@
-pragma solidity ^0.5.13;
+pragma solidity ^0.6.7;
 
 contract DecodingTest {
 
@@ -23,7 +23,7 @@ contract DecodingTest {
     }
   }
 
-  function() external payable {
+  fallback() external payable {
   }
 
   function unexpectedBoom() public returns (uint) {

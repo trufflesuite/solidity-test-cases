@@ -1,11 +1,11 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.6.7;
 
 contract CreateReturnTest {
 
   function run() public {
     new Sink();
     assembly {
-      let length := returndatasize //zero! creates don't put the bytecode in returndata, apparently
+      let length := returndatasize() //zero! creates don't put the bytecode in returndata, apparently
       returndatacopy(0x80, length, 0)
       log0(0x80, length)
     }
@@ -15,6 +15,6 @@ contract CreateReturnTest {
 contract Sink {
   constructor() public payable {
   }
-  function() external payable {
+  fallback() external payable {
   }
 }
