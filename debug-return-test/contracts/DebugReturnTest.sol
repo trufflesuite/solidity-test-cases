@@ -100,6 +100,23 @@ contract DebugReturnTest {
     Greeting memory it = Greeting("this is a very long hello!", "this is a very long goodbye!");
     return (it, it);
   }
+
+  //following parts are for demo purposes :)
+
+
+  function addressAndBalance() public returns (address, uint balance) {
+    emit Done();
+    return (address(this), address(this).balance);
+  }
+
+  struct Account {
+    address accountAddress;
+    uint balance;
+  }
+  function getAccount() public returns (Account memory) {
+    emit Done();
+    return Account(address(this), address(this).balance);
+  }
 }
 
 library DebugReturnLibrary {
