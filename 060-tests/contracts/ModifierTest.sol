@@ -1,4 +1,5 @@
-pragma solidity ^0.6.0;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.6.7;
 
 contract ModifierTestGrandparent {
   event Constructing(uint);
