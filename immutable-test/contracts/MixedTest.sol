@@ -1,4 +1,4 @@
-pragma solidity ^0.6.5;
+pragma solidity ^0.6.7;
 
 contract MixedTest {
   int8 x1 = -1;
