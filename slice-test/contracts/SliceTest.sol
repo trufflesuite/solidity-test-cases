@@ -58,13 +58,13 @@ contract SliceTest {
     bytes memory icm = internalTest(x);
     bytes memory imm = memoryTest(x);
     //bytes calldata imc = memoryTest(x); //haha no
-    //bytes calldata ecc = this.internalTest(x); //crashes!
-    //bytes memory ecm = this.internalTest(x); //crashes!
+    //bytes calldata ecc = this.internalTest(x); //nope! (also crashes in 0.6.9)
+    bytes memory ecm = this.internalTest(x); //crashes in 0.6.9
     bytes memory emm = this.memoryTest(x);
     //bytes calldata emc = this.memoryTest(x); //haha no
     internalTest(x);
     memoryTest(x);
-    //this.internalTest(x); //crashes!
+    this.internalTest(x); //crashes in 0.6.9
     this.memoryTest(x);
   }
 }
