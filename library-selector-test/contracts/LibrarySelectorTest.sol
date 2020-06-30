@@ -4,33 +4,33 @@ pragma experimental ABIEncoderV2;
 library WeirdTypesLib {
 
   //first, some non-weird types
-  function nullary() external {
+  function nullary() external view {
   }
 
-  function takesUint(uint) external {
+  function takesUint(uint) external view {
   }
 
-  function takesString(string calldata) external {
+  function takesString(string calldata) external view {
   }
 
-  function takesAddress(address) external {
+  function takesAddress(address) external view {
   }
 
   //now, some library-only types
-  function takesStorage(string storage) external {
+  function takesStorage(string storage) external view {
   }
 
-  function takesMapping(mapping(string => string) storage) external {
+  function takesMapping(mapping(string => string) storage) external view {
   }
 
   //now, some types that usually get collapsed
-  function takesAddressPayable(address payable) external {
+  function takesAddressPayable(address payable) external view {
   }
 
-  function takesFunction(function() external) external {
+  function takesFunction(function() external) external view {
   }
   
-  function takesPureFunction(function(uint) external pure returns (uint)) external {
+  function takesPureFunction(function(uint) external pure returns (uint)) external view {
   }
 
   //now, some user-defined types
@@ -46,52 +46,68 @@ library WeirdTypesLib {
     Tree[] children;
   }
 
-  function takesContract(LibrarySelectorTest) external {
+  function takesContract(LibrarySelectorTest) external view {
   }
 
-  function takesEnum(Ternary) external {
+  function takesEnum(Ternary) external view {
   }
 
-  function takesStruct(Pair calldata) external {
+  function takesStruct(Pair calldata) external view {
   }
 
   //now, user-defined types w/storage!
-  function takesStorageStruct(Pair storage) external {
+  function takesStorageStruct(Pair storage) external view {
   }
 
-  function takesStorageOnlyStruct(Tree storage) external {
+  function takesStorageOnlyStruct(Tree storage) external view {
   }
 
   //and, user-defined or collapsible types with mappings!
-  function takesMappingToStruct(mapping(string => Pair) storage) external {
+  function takesMappingToStruct(mapping(string => Pair) storage) external view {
   }
 
-  function takesMappingToEnum(mapping(string => Ternary) storage) external {
+  function takesMappingToEnum(mapping(string => Ternary) storage) external view {
   }
 
-  function takesMappingToPayable(mapping(string => address payable) storage) external {
+  function takesMappingToPayable(mapping(string => address payable) storage) external view {
   }
 
-  function takesMappingToContract(mapping(string => LibrarySelectorTest) storage) external {
+  function takesMappingToContract(mapping(string => LibrarySelectorTest) storage) external view {
   }
 
-  function takesMappingToFunction(mapping(string => function() external) storage) external {
+  function takesMappingToFunction(mapping(string => function() external) storage) external view {
   }
 
   //and with arrays!
-  function takesStorageStructArray(Pair[] storage) external {
+  function takesStorageStructArray(Pair[] storage) external view {
   }
 
-  function takesStorageEnumArray(Ternary[] storage) external {
+  function takesStorageEnumArray(Ternary[] storage) external view {
   }
 
-  function takesStoragePayableArray(address payable[] storage) external {
+  function takesStoragePayableArray(address payable[] storage) external view {
   }
 
-  function takesStorageContractArray(LibrarySelectorTest[] storage) external {
+  function takesStorageContractArray(LibrarySelectorTest[] storage) external view {
   }
 
-  function takesStorageFunctionArray(function() external[] storage) external {
+  function takesStorageFunctionArray(function() external[] storage) external view {
+  }
+
+  //and with non-storage arrays!
+  function takesStructArray(Pair[] calldata) external view {
+  }
+
+  function takesEnumArray(Ternary[] calldata) external view {
+  }
+
+  function takesPayableArray(address payable[] calldata) external view {
+  }
+
+  function takesContractArray(LibrarySelectorTest[] calldata) external view {
+  }
+
+  function takesFunctionArray(function() external[] calldata) external view {
   }
 
   //and finally...
