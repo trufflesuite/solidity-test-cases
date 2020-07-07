@@ -16,4 +16,15 @@ contract SetLoad {
     }
   }
   */
+
+  /*
+  function link() public {
+    assembly {
+      pop(linkersymbol("Blank"))
+    }
+  }
+  */
+}
+
+contract Blank {
 }
