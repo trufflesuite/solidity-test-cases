@@ -1,4 +1,5 @@
-pragma solidity ^0.5.6;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.7.0;
 
 contract MappingPointerTest {
   mapping(string => uint) surface;
@@ -35,7 +36,7 @@ library TouchLib {
 contract PreExisting {
   uint[2] pair;
 
-  constructor() public {
+  constructor() {
     pair[0] = 82;
   }
 

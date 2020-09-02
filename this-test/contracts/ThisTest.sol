@@ -1,4 +1,5 @@
-pragma solidity ^0.5.0;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.7.0;
 
 contract Tester {
 
@@ -49,7 +50,7 @@ contract ThisTest {
 
   ThisTest public self;
 
-  constructor() public {
+  constructor() {
     self = this;
     emit Done();
   }
@@ -60,7 +61,7 @@ contract SenderTest {
 
   SenderTest self;
 
-  constructor(Tester invoker) public {
+  constructor(Tester invoker) {
     self = this;
     invoker.recordSender();
   }
