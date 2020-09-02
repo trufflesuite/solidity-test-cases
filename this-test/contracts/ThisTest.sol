@@ -1,9 +1,10 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.1;
 
 contract Tester {
 
   event Done();
+  event Self(address);
 
   ThisTest nonself;
 
@@ -42,7 +43,19 @@ contract Tester {
   function testSenderLib() public {
     ThisTestLib.testSender(this);
   }
+
+  /*
+  function testFree() public {
+    emit Self(freeFn());
+  }
+  */
 }
+
+/*
+function freeFn() returns (address) {
+  return address(this);
+}
+*/
 
 contract ThisTest {
 
