@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.6.3;
+pragma solidity ^0.7.1;
 
 contract TwoTest {
 
@@ -17,8 +17,8 @@ contract TwoTest {
     function(string memory, uint[1] memory) external fn = this.twoTest;
     assembly {
       log1(0, 0, it)
-      log1(0, 0, x_slot)
-      log1(0, 0, x_offset)
+      log1(0, 0, x.slot)
+      log1(0, 0, x.offset)
       log1(0, 0, y)
       log1(0, 0, z1)
       /*
@@ -26,11 +26,11 @@ contract TwoTest {
       log1(0, 0, w)
       log1(0, 0, x)
       log1(0, 0, s)
-      log1(0, 0, s_length)
-      log1(0, 0, w_offset)
+      log1(0, 0, s.length)
+      log1(0, 0, w.offset)
       log1(0, 0, fn)
-      log1(0, 0, fn_address)
-      log1(0, 0, fn_selector)
+      log1(0, 0, fn.address)
+      log1(0, 0, fn.selector)
       */
     }
   }

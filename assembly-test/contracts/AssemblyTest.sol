@@ -1,14 +1,14 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.7.1;
 
 contract AssemblyTest {
   function run(uint[2] storage pair) view internal {
     assembly {
-      switch pair_offset
+      switch pair.offset
       case 0 {
-        let p.add := add(msize(), 32)
-        mstore(p.add,add(sload(pair_slot), sload(add(pair_slot,1))))
-        return(p.add,32)
+        let padd := add(msize(), 32)
+        mstore(padd,add(sload(pair.slot), sload(add(pair.slot,1))))
+        return(padd,32)
       }
       case 31 {
         /*
@@ -18,9 +18,9 @@ contract AssemblyTest {
         */
       }
       default {
-        let add. := add(msize(), 32)
-        mstore(add.,"???")
-        revert(add.,3)
+        let adddot := add(msize(), 32)
+        mstore(adddot,"???")
+        revert(adddot,3)
       }
     }
     string memory done = "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii";
