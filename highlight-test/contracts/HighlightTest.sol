@@ -14,6 +14,8 @@ look"; //looklook!
     emit Fooft("woggle", x); //for displaying
   }
 
+  uint newInt;
+
   function run(string[3] memory args) public returns (function(address) external value) { //for running
     mapper["hooblyforst"] = 3 finney; //RIP Hal
     mapper["zoolo"] = tx.gasprice; //for pricing
