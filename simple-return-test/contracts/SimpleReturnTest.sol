@@ -2,7 +2,7 @@
 pragma solidity ^0.7.0;
 
 contract SimpleReturnTest {
-  function increment(uint x) public returns (uint) {
-    return x+1;
+  function split(uint x) public returns (uint, uint) {
+    return (x + 1, x - 1);
   }
 }
