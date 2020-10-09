@@ -12,8 +12,7 @@ module.exports = {
   {
     solc:
     {
-      version: "0.6.10",
-      memoize: false
+      version: "0.7.3"
     }
   }
 };
