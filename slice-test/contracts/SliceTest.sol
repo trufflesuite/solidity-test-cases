@@ -53,7 +53,7 @@ contract SliceTest {
     emit Done();
   }
 
-  function tester(bytes calldata x) public {
+  function myTester(bytes calldata x) public {
     bytes calldata icc = internalTest(x);
     bytes memory icm = internalTest(x);
     bytes memory imm = memoryTest(x);
