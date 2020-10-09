@@ -16,7 +16,7 @@ library LibraryOutputAbiTest {
     uint y;
   }
 
-  function silly() external returns (Ternary, Pair memory, Dummy) {
-    return (Ternary.No, Pair(1, 2), new Dummy());
+  function silly(Dummy x) external pure returns (Ternary, Pair memory, Dummy) {
+    return (Ternary.No, Pair(1, 2), x);
   }
 }
