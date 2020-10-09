@@ -1,4 +1,5 @@
-pragma solidity ^0.5.9;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.7.3;
 
 contract CastTest {
 
@@ -9,7 +10,7 @@ contract CastTest {
   event enumEvent(Ternary indexed);
   event addressEvent(address indexed);
   event contractEvent(CastTest indexed);
-  event functionEvent(function() external); //not indexed due to Solidity bug!
+  event functionEvent(function() external indexed);
 
   function enumTest() public {
     uint8 byte1 = 0xff;

@@ -1,4 +1,5 @@
-pragma solidity ^0.5.9;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.7.0;
 
 contract OverflowTest {
   uint8 storageByte;
