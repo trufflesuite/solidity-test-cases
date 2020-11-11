@@ -90,7 +90,7 @@ contract Temporary {
 
   event Dummy();
 
-  uint initial = another(36);
+  uint immutable initial = another(36);
 
   constructor(uint) {
     another(44);
@@ -110,7 +110,7 @@ contract Temporary {
   }
 
   receive() external payable {
-    another(67);
+    another(initial);
   }
 }
 
