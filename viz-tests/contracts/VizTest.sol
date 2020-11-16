@@ -42,7 +42,7 @@ contract VizTest {
     try this.sliceTest(arr) {
     } catch (bytes memory) {
     }
-    Temporary temp = new Temporary(47);
+    Temporary temp = new Temporary{salt: hex"deadbeef"}(47);
     address(temp).transfer(1);
     emit Bool(address(temp).send(address(this).balance + 1));
     emit Word(sha256("_"));
