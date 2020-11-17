@@ -68,6 +68,12 @@ contract GasTest {
   function justatest() public payable {
   }
 
+  function whataboutthis() public {
+    try temp.badboom() {
+    } catch (bytes memory) {
+    }
+  }
+
   function sdtest() public {
     emit Dummy();
     temp.boom();
@@ -114,6 +120,11 @@ contract Temporary {
   }
 
   function boom() public {
+    emit Dummy();
+    selfdestruct(tx.origin);
+  }
+
+  function badboom() public returns (uint) {
     emit Dummy();
     selfdestruct(tx.origin);
   }
