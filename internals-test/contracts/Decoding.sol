@@ -1,10 +1,10 @@
-pragma solidity ^0.5.7;
+pragma solidity >=0.7.0;
 
 contract DecodingTestBase {
 
   event Log(uint);
 
-  function inherited() public {
+  function inherited() public virtual {
     emit Log(0);
   }
 }
@@ -20,7 +20,7 @@ library DecodingTestLib {
 
 contract DecodingTest is DecodingTestBase {
 
-  function inherited() public {
+  function inherited() public override {
     emit Log(1);
   }
 
@@ -51,7 +51,7 @@ contract DecodingTest is DecodingTestBase {
     emit Log(2);
   }
 
-  constructor() public {
+  constructor() {
     function() internal[1] memory memoryFns;
     function() internal stackFn;
     

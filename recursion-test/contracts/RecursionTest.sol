@@ -1,20 +1,20 @@
-pragma solidity ^0.6.1;
+pragma solidity >=0.7.0;
 
 contract RecursionTest {
 
-  function factorial(uint n) public returns(uint nbang)
-  {
-    uint prev;
-    uint prevFac;
-    if(n>0)
-    {
-      prev = n-1;
-      prevFac = factorial(n-1);
-      nbang = n*prevFac;
+  int lastResult;
+
+  function factorial(int n) public returns(int nbang) {
+    int prev;
+    int prevFac;
+    nbang = n;
+    prev = n - 1; //break here #1 (12)
+    if (n > 0) {
+      prevFac = factorial(n - 1);
+      nbang = n * prevFac;
+    } else {
+      nbang = 1;
     }
-    else
-    {
-      nbang=1;
-    }
+    lastResult = nbang; //break here #2 (22)
   }
 }

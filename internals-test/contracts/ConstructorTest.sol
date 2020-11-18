@@ -1,4 +1,4 @@
-pragma solidity ^0.5.7;
+pragma solidity >=0.7.0;
 
 //what happens when an internal fn is called from a constructor?
 //what happens when an internal fn is *stored* in a constructor?
@@ -14,7 +14,7 @@ contract ConstructorTest {
   function() internal storedFn;
   function() internal storedFnInvalid;
 
-  constructor() public {
+  constructor() {
     example();
     function() internal it = example;
     it();
