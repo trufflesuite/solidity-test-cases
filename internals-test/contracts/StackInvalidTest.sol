@@ -5,6 +5,17 @@ contract InvalidTest {
     function() internal invalid;
     invalid();
   }
+
+  function() internal storInvalid;
+
+  function load() public {
+    storInvalid();
+  }
+
+  function load2() public {
+    function() internal invalid = storInvalid;
+    invalid();
+  }
 }
 
 contract InvalidLibTest {
