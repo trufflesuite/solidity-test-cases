@@ -5,3 +5,7 @@ def vyper_action() -> uint256:
 @external
 def __init__():
     pass
+
+@external
+def fail():
+    raise "Mayday, mayday!"
