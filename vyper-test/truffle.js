@@ -16,8 +16,6 @@ module.exports = {
     },
     vyper: {
       settings: {
-        sourceMap: true,
-        evmVersion: "istanbul"
       }
     }
   }
