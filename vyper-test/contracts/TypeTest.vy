@@ -27,6 +27,11 @@ associator: HashMap[bytes32, address]
 
 #length: decimal(m)
 
+getme: public(uint256)
+unmoving: constant(uint256) = 1
+#pubconst: public(constant(uint256) #this is illegal
+#constpub: constant(public(uint256) #so is this
+
 pair: Pair
 
 @external
