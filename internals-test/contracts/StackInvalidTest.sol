@@ -1,8 +1,19 @@
-pragma solidity ^0.5.7;
+pragma solidity >=0.7.0;
 
 contract InvalidTest {
   function run() public {
     function() internal invalid;
+    invalid();
+  }
+
+  function() internal storInvalid;
+
+  function load() public {
+    storInvalid();
+  }
+
+  function load2() public {
+    function() internal invalid = storInvalid;
     invalid();
   }
 }
