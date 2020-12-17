@@ -12,7 +12,7 @@ module.exports = {
   {
     solc:
     {
-      version: "/home/sniffnoy/truffle/solc/soljson.js"
+      version: "0.8.0"
     }
   }
 };
