@@ -1,4 +1,5 @@
-pragma solidity ^0.6.6;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract InternalTest {
 
@@ -14,7 +15,7 @@ contract InternalTest {
 }
 
 contract Sink {
-  constructor() public payable {
+  constructor() payable {
   }
   fallback() external payable {
   }

@@ -1,4 +1,5 @@
-pragma solidity ^0.6.2;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract StacktraceTest {
 
@@ -8,9 +9,9 @@ contract StacktraceTest {
 
   function() internal zero;
 
-  constructor(uint x) public payable {
+  constructor(uint x) payable {
     if(x == 1) {
-      selfdestruct(tx.origin);
+      selfdestruct(payable(tx.origin));
     }
     assert(x == 0);
   }
@@ -114,7 +115,7 @@ contract StacktraceTest {
 
 contract Boom {
   function boom() public returns (uint) {
-    selfdestruct(address(this));
+    selfdestruct(payable(address(this)));
   }
 
   receive() external payable{
