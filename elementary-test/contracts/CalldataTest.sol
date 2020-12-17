@@ -1,5 +1,5 @@
-pragma solidity ^0.6.6;
-pragma experimental ABIEncoderV2;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract CalldataTest {
   mapping(uint => uint) uintMap;

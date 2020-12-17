@@ -1,4 +1,5 @@
-pragma solidity ^0.6.6;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract ConstantKeyTest {
 
@@ -6,7 +7,7 @@ contract ConstantKeyTest {
 
   mapping (int => int) intMap;
   mapping (string => string) stringMap;
-  mapping (byte => byte) byteMap;
+  mapping (bytes1 => bytes1) byteMap;
   mapping (bool => bool) boolMap;
   mapping (uint => uint) uintMap;
 
@@ -18,9 +19,9 @@ contract ConstantKeyTest {
   string constant hello = "hello";
   string constant goodbye = false ? "hello" : "goodbye";
 
-  byte constant shortOne = 0x01;
-  byte constant shortMinus = 0xff;
-  byte constant shortTwo = byte(true ? 0x02 : 0x03);
+  bytes1 constant shortOne = 0x01;
+  bytes1 constant shortMinus = 0xff;
+  bytes1 constant shortTwo = bytes1(true ? 0x02 : 0x03);
 
   bytes constant deadbeef = hex"deadbeef";
 
