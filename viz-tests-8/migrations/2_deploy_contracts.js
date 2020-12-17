@@ -1,10 +1,10 @@
-var Library = artifacts.require("Library");
+var VizLibrary = artifacts.require("VizLibrary");
 var VizTest = artifacts.require("VizTest");
 var Secondary = artifacts.require("Secondary");
 
 module.exports = function(deployer) {
-  deployer.deploy(Library);
-  deployer.link(Library, VizTest);
+  deployer.deploy(VizLibrary);
+  deployer.link(VizLibrary, VizTest);
   deployer.deploy(VizTest, { value: 100 });
-  deployer.deploy(Secondary);
+  deployer.deploy(Secondary, 39);
 };
