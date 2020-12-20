@@ -1,18 +1,20 @@
-pragma solidity ^0.6.4;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract GlobalTest {
 
   event Done(uint x);
+  event Finished(GlobalTest);
 
   struct Msg {
     bytes data;
-    address payable sender;
+    address sender;
     bytes4 sig;
     uint value;
   }
 
   struct Tx {
-    address payable origin;
+    address origin;
     uint gasprice;
   }
 
@@ -22,21 +24,20 @@ contract GlobalTest {
     uint gaslimit;
     uint number;
     uint timestamp;
+    uint chainid;
   }
 
   Msg _msg;
   Tx _tx;
   Block _block;
-  GlobalTest _this;
-  uint public _now;
+  GlobalTest public _this;
 
   function run(uint x) public payable {
     _this = this;
-    _now = now;
     _msg = Msg(msg.data, msg.sender, msg.sig, msg.value);
     _tx = Tx(tx.origin, tx.gasprice);
     _block = Block(block.coinbase, block.difficulty,
-      block.gaslimit, block.number, block.timestamp);
+      block.gaslimit, block.number, block.timestamp, block.chainid);
     emit Done(x);
   }
 
@@ -46,21 +47,19 @@ contract GlobalTest {
 
   fallback() external payable {
     _this = this;
-    _now = now;
     _msg = Msg(msg.data, msg.sender, msg.sig, msg.value);
     _tx = Tx(tx.origin, tx.gasprice);
     _block = Block(block.coinbase, block.difficulty,
-      block.gaslimit, block.number, block.timestamp);
+      block.gaslimit, block.number, block.timestamp, block.chainid);
     emit Done(0);
   }
 
   receive() external payable {
     _this = this;
-    _now = now;
-    _msg = Msg(msg.data, msg.sender, msg.sig, msg.value);
+    _msg = Msg(hex"", msg.sender, msg.sig, msg.value);
     _tx = Tx(tx.origin, tx.gasprice);
     _block = Block(block.coinbase, block.difficulty,
-      block.gaslimit, block.number, block.timestamp);
+      block.gaslimit, block.number, block.timestamp, block.chainid);
     emit Done(0);
   }
 
@@ -81,14 +80,12 @@ contract GlobalTest {
     Tx memory __tx;
     Block memory __block;
     GlobalTest __this;
-    uint __now;
     __this = this;
-    __now = now;
     __msg = Msg(msg.data, msg.sender, msg.sig, 0);
     __tx = Tx(tx.origin, tx.gasprice);
     __block = Block(block.coinbase, block.difficulty,
-      block.gaslimit, block.number, block.timestamp);
-    return x + uint(address(__this)) + __now
+      block.gaslimit, block.number, block.timestamp, block.chainid);
+    return x + uint160(address(__this))
       + __msg.value + __tx.gasprice + __block.number;
   }
 
@@ -105,7 +102,7 @@ contract GlobalTest {
   }
 
   function runGetter() public {
-    emit Done(this._now());
+    emit Finished(this._this());
   }
 
   function runFailedCreate2(uint x) public payable {
@@ -123,17 +120,15 @@ contract CreationTest {
   GlobalTest.Tx _tx;
   GlobalTest.Block _block;
   CreationTest _this;
-  uint _now;
 
   event Done(uint x);
 
-  constructor(uint x, bool succeed) public payable {
+  constructor(uint x, bool succeed) payable {
     _this = this;
-    _now = now;
     _msg = GlobalTest.Msg(msg.data, msg.sender, msg.sig, msg.value);
     _tx = GlobalTest.Tx(tx.origin, tx.gasprice);
     _block = GlobalTest.Block(block.coinbase, block.difficulty,
-      block.gaslimit, block.number, block.timestamp);
+      block.gaslimit, block.number, block.timestamp, block.chainid);
     require(succeed);
     emit Done(x);
   }
@@ -147,12 +142,10 @@ library GlobalTestLib {
     GlobalTest.Msg memory __msg;
     GlobalTest.Tx memory __tx;
     GlobalTest.Block memory __block;
-    uint __now;
-    __now = now;
     __msg = GlobalTest.Msg(msg.data, msg.sender, msg.sig, msg.value);
     __tx = GlobalTest.Tx(tx.origin, tx.gasprice);
     __block = GlobalTest.Block(block.coinbase, block.difficulty,
-      block.gaslimit, block.number, block.timestamp);
-    emit Done(x + __now + __msg.value + __tx.gasprice + __block.number);
+      block.gaslimit, block.number, block.timestamp, block.chainid);
+    emit Done(x + __msg.value + __tx.gasprice + __block.number);
   }
 }
