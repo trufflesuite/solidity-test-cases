@@ -1,0 +1,3 @@
+@external
+def test():
+    pass
