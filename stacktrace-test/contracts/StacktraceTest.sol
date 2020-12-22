@@ -17,11 +17,11 @@ contract StacktraceTest {
   }
 
   function run(uint fnId) public {
-    function(bool) internal[11] memory run0s = [
+    function(bool) internal[12] memory run0s = [
       runAssert, runRequire, runMessage,
       runDivide, runPay, runCantPay, runBoom,
       runOutOfGas, runExternal, runInternal,
-      runInternalZero
+      runInternalZero, runIndex
     ];
     if(fnId < run0s.length) {
       run0 = run0s[fnId];
@@ -109,6 +109,13 @@ contract StacktraceTest {
   function runInternalZero(bool succeed) public {
     if(!succeed) {
       zero();
+    }
+  }
+
+  function runIndex(bool succeed) public {
+    uint[] memory nums = new uint[](0);
+    if(!succeed) {
+      emit Num(nums[1]);
     }
   }
 }
