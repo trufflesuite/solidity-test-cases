@@ -47,4 +47,8 @@ contract PanicTest {
     f();
   }
 
+  function notAPanic() public returns (uint) {
+    return abi.decode(hex"", (uint));
+  }
+
 }
