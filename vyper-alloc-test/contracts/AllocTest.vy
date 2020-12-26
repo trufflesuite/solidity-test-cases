@@ -6,6 +6,25 @@ event Num:
 event Unum:
     x: uint256
 
+struct Pair:
+    x: uint256
+    y: uint256
+
+@internal
+def consecTest(x: int128, s: String[10], y: int128, w: uint256[2], z: int128, v: Pair, zz: int128):
+    log Here()
+
+@external
+def callConsecTest():
+    x: int128 = -1
+    s: String[10] = "0123456789"
+    y: int128 = -16
+    w: uint256[2] = [33, 34]
+    z: int128 = -256
+    v: Pair = Pair({ x: 49, y: 50 })
+    zz: int128 = -4096
+    self.consecTest(x, s, y, w, z, v, zz)
+
 @external
 def assignmentTest():
     x: uint256[2] = [33, 34]
@@ -41,10 +60,6 @@ def blockTest():
     for i in range(b, b + 2):
         #log Unum(i) #fails
         log Num(i) #works
-
-struct Pair:
-    x: uint256
-    y: uint256
 
 @external
 def run():
