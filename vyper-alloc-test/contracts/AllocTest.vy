@@ -10,6 +10,10 @@ struct Pair:
     x: uint256
     y: uint256
 
+@external
+def __init__(x: int128, s: String[10], y:int128, w: uint256[2], z: int128):
+    log Here()
+
 @internal
 def consecTest(x: int128, s: String[10], y: int128, w: uint256[2], z: int128, v: Pair, zz: int128):
     log Here()
