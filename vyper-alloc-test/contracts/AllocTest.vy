@@ -11,8 +11,26 @@ struct Pair:
     y: uint256
 
 @external
-def __init__(x: int128, s: String[10], y:int128, w: uint256[2], z: int128):
+def __init__(n: int128, a: String[31], m: int128, b: String[31], k: int128, c: String[31]):
     log Here()
+
+@internal
+def alternateTest(n1: int128, s1: String[31], n2: int128, s2: String[31], n3: int128, s3: String[31]):
+    log Here()
+
+@external
+def alternateTester():
+    self.alternateTest(-1, "ABC", -16, "DEFG", -256, "HIJKL")
+
+@internal
+def stringTest(a: String[31], b: String[31], c: String[31]):
+    x: String[31] = "MNOPQR"
+    x = a
+    log Here()
+
+@external
+def stringTester():
+    self.stringTest("ABC", "DEFG", "HIJKL")
 
 @internal
 def consecTest(x: int128, s: String[10], y: int128, w: uint256[2], z: int128, v: Pair, zz: int128):
