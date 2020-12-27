@@ -60,6 +60,7 @@ def assignmentTest():
     x = x2
     log Here()
 
+#this function doesn't work on some old 0.2.x versions
 @internal
 def blockTest():
     a: uint256 = 7
