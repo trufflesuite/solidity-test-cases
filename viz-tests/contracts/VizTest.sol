@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
 contract VizTest {
@@ -43,8 +43,8 @@ contract VizTest {
     } catch (bytes memory) {
     }
     Temporary temp = new Temporary{salt: hex"deadbeef"}(47);
-    address(temp).transfer(1);
-    emit Bool(address(temp).send(address(this).balance + 1));
+    payable(temp).transfer(1);
+    emit Bool(payable(temp).send(address(this).balance + 1));
     emit Word(sha256("_"));
     temp.boom(false);
     (new Temporary(38)).boom(true);
@@ -106,7 +106,7 @@ contract Temporary {
   }
 
   function directBoom(bool destroy) public {
-    selfdestruct(destroy ? address(this) : tx.origin);
+    selfdestruct(destroy ? payable(this) : payable(tx.origin));
   }
 
   receive() external payable {
