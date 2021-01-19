@@ -12,10 +12,7 @@ module.exports = {
   {
     solc:
     {
-      version: "0.7.5",
-      settings: {
-        //viaIR: true
-      }
+      version: "0.8.0",
     }
   }
 };
