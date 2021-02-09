@@ -87,4 +87,10 @@ contract ResultTest {
     emit BytesI(hex"deadbeef");
     emit DynamicI(new uint8[](1));
   }
+
+  event CauseTrouble(uint __length__);
+
+  function causeTrouble() public {
+    emit CauseTrouble(107);
+  }
 }
