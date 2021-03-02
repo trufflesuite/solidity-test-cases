@@ -8,7 +8,7 @@ object "YulTest" {
   }
   object "runtime" {
     code {
-      mstore(0, linkersymbol("TestLibrary.sol:TestLibrary"))
+      mstore(0, linkersymbol("./TestLibrary.sol:TestLibrary"))
       return(0, 0x20)
     }
   }
