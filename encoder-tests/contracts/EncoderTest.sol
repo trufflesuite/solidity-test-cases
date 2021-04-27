@@ -22,6 +22,10 @@ contract EncoderTest {
     uint8 y;
   }
 
+  function dummy() public {
+    Linked.dummy();
+  }
+
   constructor(uint x) {
   }
 
@@ -107,5 +111,10 @@ contract EncoderTest {
   }
 
   function whichOne(string memory x, uint8 y) public {
+  }
+}
+
+library Linked {
+  function dummy() external {
   }
 }
