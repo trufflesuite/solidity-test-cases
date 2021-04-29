@@ -23,8 +23,20 @@ contract RevertTest {
     emit Here();
     revert Aux.What(-1);
   }
+
+  function foreignEvent() public {
+    AuxLib.fail();
+  }
 }
 
 contract Aux {
   error What(int);
+}
+
+library AuxLib {
+  event Fail();
+
+  function fail() internal {
+    emit Fail();
+  }
 }
