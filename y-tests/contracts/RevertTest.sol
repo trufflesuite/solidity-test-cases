@@ -26,4 +26,11 @@ contract RevertTest {
   function ok() public {
     emit Here();
   }
+
+  function better() public {
+    try this.run3() {
+    } catch {
+    }
+    this.ok();
+  }
 }
