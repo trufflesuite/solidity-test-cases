@@ -33,8 +33,12 @@ str: String[80]
 bar7: int128
 strobj: StrPair
 bar8: int128
-#strarr: String[80][2]
-#bar9: int128
+map: HashMap[uint256, int128]
+bar9: int128
+strmap: HashMap[uint256, String[16]]
+bar10: int128
+arrmap: HashMap[uint256, int128[2]]
+bar11: int128
 
 @external
 def run():
@@ -70,3 +74,10 @@ def run():
     self.strobj.x = "abc"
     self.strobj.y = "xyz"
     self.bar8 = -1
+    self.map[1] = 1
+    self.bar9 = -1
+    self.strmap[1] = "mapped string"
+    self.bar10 = -1
+    self.arrmap[1][0] = 1
+    self.arrmap[1][1] = 2
+    self.bar11 = -1
