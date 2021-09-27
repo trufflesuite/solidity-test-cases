@@ -5,15 +5,15 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 7545,
-      network_id: "*"
+      network_id: "*",
+      gas: 6721975
     }
   },
   compilers:
   {
     solc:
     {
-      version: "0.6.7",
-      memoize: false
+      version: "0.8.8",
     }
   }
 };

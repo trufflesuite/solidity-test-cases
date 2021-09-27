@@ -1,4 +1,5 @@
-pragma solidity ^0.6.7;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.8;
 
 contract DefaultTest {
   int8 immutable x1 = -3;

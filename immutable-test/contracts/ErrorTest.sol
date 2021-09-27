@@ -1,11 +1,12 @@
-pragma solidity ^0.6.6;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.8;
 
 contract ErrorTest {
-  byte immutable secret;
+  bytes1 immutable secret;
 
   event Done();
 
-  constructor() public {
+  constructor() {
     secret = 0xff;
     emit Done();
   }

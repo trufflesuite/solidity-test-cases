@@ -1,8 +1,9 @@
-pragma solidity ^0.6.5;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.8;
 
 contract Base {
   uint immutable x;
-  constructor() public {
+  constructor() {
     x = 1;
   }
 }
@@ -11,7 +12,7 @@ contract Derived is Base {
   uint immutable y;
   event Pair(uint,uint);
   event Ready();
-  constructor() public {
+  constructor() {
     y = 2;
     emit Ready();
   }

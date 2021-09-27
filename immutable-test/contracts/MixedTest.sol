@@ -1,4 +1,5 @@
-pragma solidity ^0.6.7;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.8;
 
 contract MixedTest {
   int8 x1 = -1;
@@ -11,7 +12,7 @@ contract MixedTest {
   event Sum(int8);
   event Done();
 
-  constructor() public {
+  constructor() {
     emit Done();
   }
 

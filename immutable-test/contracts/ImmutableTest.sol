@@ -1,4 +1,5 @@
-pragma solidity ^0.6.5;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.8;
 
 contract ImmutableTest {
 
@@ -15,7 +16,7 @@ contract ImmutableTest {
   uint immutable konstant;
   int8 immutable signed;
   bool immutable verity = true;
-  byte immutable key;
+  bytes1 immutable key;
   address immutable origin;
   ImmutableTest immutable self;
   Ternary immutable fact;
@@ -25,7 +26,7 @@ contract ImmutableTest {
   event Uint(uint);
   event Int(int8);
   event Bool(bool);
-  event Byte(byte);
+  event Byte(bytes1);
   event Address(address);
   event Contract(ImmutableTest);
   event Enum(Ternary);
@@ -36,8 +37,8 @@ contract ImmutableTest {
 
   event String(string);
 
-  constructor(string memory hi, uint8 x, byte over, string memory bye) public {
-    konstant = x * 87;
+  constructor(string memory hi, uint8 x, bytes1 over, string memory bye) {
+    konstant = uint(x) * 87;
     key = over >> 1;
     origin = address(this);
     self = this;
@@ -46,6 +47,8 @@ contract ImmutableTest {
     signed = -1;
     emit String(hi);
     emit String(bye);
+    emit Uint(konstant); //allowed on 0.8.8!
+    emit Int(signed);
   }
 
   function run() public {
