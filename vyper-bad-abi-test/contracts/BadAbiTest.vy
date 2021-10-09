@@ -12,14 +12,17 @@ event Both:
     pair: Pair
 
 @external
+@pure
 def returnsString() -> String[16]:
     return "Hello"
 
 @external
+@pure
 def returnsBytes() -> Bytes[16]:
     return 0xdeadbeef
 
 @external
+@pure
 def returnsPair() -> Pair:
     return Pair({ str: "Hello", raw: 0xdeadbeef })
 
