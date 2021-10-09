@@ -5,3 +5,8 @@ struct Pair:
 event Stuff:
     pair: Pair
     z: uint256
+
+@external
+@pure
+def identity(pair: Pair, z: uint256) -> (Pair, uint256):
+     return (pair, z)
