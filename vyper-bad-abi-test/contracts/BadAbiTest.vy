@@ -11,6 +11,10 @@ event Binary:
 event Both:
     pair: Pair
 
+event DoublePair:
+    pair1: Pair
+    pair2: Pair
+
 @external
 @pure
 def returnsString() -> String[16]:
