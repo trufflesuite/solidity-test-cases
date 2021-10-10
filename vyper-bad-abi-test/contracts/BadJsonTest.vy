@@ -7,14 +7,17 @@ event Stuff:
     z: uint256
 
 pair: Pair
-z: uint256
 
 @external
-def __init__(pair: Pair, z: uint256):
+def __init__(pair: Pair):
     self.pair = pair
-    self.z = z
 
 @external
 @pure
 def identity(pair: Pair, z: uint256) -> (Pair, uint256):
      return (pair, z)
+
+@external
+@pure
+def simpleIdentity(pair: Pair) -> Pair:
+     return pair
