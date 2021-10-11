@@ -47,6 +47,8 @@ library WeirdTypesLib {
     Tree[] children;
   }
 
+  type MyInt is int8;
+
   function takesContract(LibrarySelectorTest) external view {
   }
 
@@ -54,6 +56,9 @@ library WeirdTypesLib {
   }
 
   function takesStruct(Pair calldata) external view {
+  }
+
+  function takesCustom(MyInt) external view {
   }
 
   //now, user-defined types w/storage!
@@ -119,5 +124,9 @@ library WeirdTypesLib {
 contract LibrarySelectorTest {
   function run() public {
     WeirdTypesLib.IHopeThisGoesLast(); //let's just go with this I guess?
+  }
+
+  function runTakesCustom() public {
+    WeirdTypesLib.takesCustom(WeirdTypesLib.MyInt.wrap(-1));
   }
 }
