@@ -8,4 +8,9 @@ contract InferenceTest {
     var x = 1;
     map[x] = x;
   }
+
+  function pointerTest() {
+    var pointer = test;
+    pointer(3);
+  }
 }
