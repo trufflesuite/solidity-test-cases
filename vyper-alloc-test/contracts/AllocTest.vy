@@ -10,6 +10,10 @@ struct Pair:
     x: uint256
     y: uint256
 
+struct StringPair:
+    x: String[16]
+    y: String[16]
+
 @external
 def __init__(n: int128, a: String[31], m: int128, b: String[31], k: int128, c: String[31]):
     log Here()
@@ -26,6 +30,11 @@ def alternateTester():
 def stringTest(a: String[31], b: String[31], c: String[31]):
     x: String[31] = "MNOPQR"
     x = a
+    log Here()
+
+@external
+def stringPairTest():
+    p: StringPair = StringPair({ x: "Hello", y: "Hi" })
     log Here()
 
 @external
@@ -59,6 +68,23 @@ def assignmentTest():
     x2: uint256[2] = [35, 36]
     x = x2
     log Here()
+
+@internal
+def nestTest3(x: int128, y: int128):
+    log Num(x * 16)
+    log Num(y * 16)
+
+@internal
+def nestTest2(x: int128, y: int128):
+    self.nestTest3(x * 16, y * 16)
+
+@internal
+def nestTest1(x: int128, y: int128):
+    self.nestTest2(x * 16, y * 16)
+
+@external
+def nestTest():
+    self.nestTest1(-1, -16)
 
 #this function doesn't work on some old 0.2.x versions
 @internal
