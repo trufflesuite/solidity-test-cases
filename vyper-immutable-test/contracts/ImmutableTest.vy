@@ -5,8 +5,8 @@ imm: immutable(uint256)
 
 @external
 def __init__(x: uint256):
-    self.imm = x
+    imm = x
 
 @external
 def report():
-    log Num(self.imm)
+    log Num(imm)
