@@ -12,10 +12,11 @@ module.exports = {
   {
     solc:
     {
-      version: "0.6.3",
+      version: "0.8.10",
       settings: {
         debug: {
-          revertStrings: "debug"
+          revertStrings: "debug",
+          debugInfo: ["*"]
         }
       }
     }
