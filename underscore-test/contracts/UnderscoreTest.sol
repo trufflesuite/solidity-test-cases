@@ -10,6 +10,7 @@ contract UnderscoreTest {
     pair = 0xfff_f;
     //pair = hex"fff_f";
     pair = hex"ff_ff";
+    //pair = 0x_ffff;
     num = 1_1;
     num = 1_1e1_0;
     //num = 1_e10;
