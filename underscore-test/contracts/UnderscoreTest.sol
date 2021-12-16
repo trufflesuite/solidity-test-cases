@@ -15,5 +15,9 @@ contract UnderscoreTest {
     num = 1_1e1_0;
     //num = 1_e10;
     //num = 1e_10;
+    num = 1.1e10;
+    //num = 1_.1e10;
+    //num = 1._1e10;
+    //num = 11e+_10;
   }
 }
