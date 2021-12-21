@@ -5,6 +5,7 @@ struct Pair:
 flag: bool
 count: uint256
 static: constant(uint256) = 3
+common: public(uint256)
 difference: int128
 bigDifference: int256
 decimalValue: decimal
