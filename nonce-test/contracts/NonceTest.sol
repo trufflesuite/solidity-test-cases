@@ -55,6 +55,15 @@ contract NonceTest {
     revert();
   }
 
+  function delegateMake() public {
+    Splib.make();
+  }
+}
+
+library Splib {
+  function make() external {
+    new Spawn(true);
+  }
 }
 
 contract Spawn {
