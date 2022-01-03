@@ -1,7 +1,8 @@
-pragma solidity ^0.5.5;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract CantCreate {
-  constructor() public {
+  constructor() {
     revert("Nope!");
   }
 }
@@ -10,7 +11,7 @@ contract MappingMixup {
 
   mapping(uint => uint) mixup;
 
-  constructor(uint n, Tester invoker) public {
+  constructor(uint n, Tester invoker) {
     mixup[n] = 81;
     if(n > 0) {
       invoker.mixup(n - 1);

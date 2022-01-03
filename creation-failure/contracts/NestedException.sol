@@ -1,4 +1,5 @@
-pragma solidity ^0.5.7;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 contract NestedException {
   function run() public {
@@ -6,12 +7,14 @@ contract NestedException {
   }
 
   function run2() external {
-    new DefinitelyCantCreate();
+    try new DefinitelyCantCreate() {
+    } catch (bytes memory) {
+    }
   }
 }
 
 contract DefinitelyCantCreate {
-  constructor() public {
+  constructor() {
     assert(false);
   }
 }
