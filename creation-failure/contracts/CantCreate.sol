@@ -10,9 +10,11 @@ contract CantCreate {
 contract MappingMixup {
 
   mapping(uint => uint) mixup;
+  uint simple;
 
   constructor(uint n, Tester invoker) {
     mixup[n] = 81;
+    simple = 82 + n;
     if(n > 0) {
       invoker.mixup(n - 1);
     }
