@@ -13,4 +13,8 @@ contract SolTestTester is SolTestTest {
   function test2() public {
     this.run(false);
   }
+
+  function test3() public {
+    Assert.equal(uint(1), 2, "uh-oh");
+  }
 }
