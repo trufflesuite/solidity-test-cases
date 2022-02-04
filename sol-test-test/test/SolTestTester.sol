@@ -1,4 +1,5 @@
-pragma solidity ^0.5.10;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.7.0;
 
 import "../contracts/SolTestTest.sol";
 import "truffle/Assert.sol";
