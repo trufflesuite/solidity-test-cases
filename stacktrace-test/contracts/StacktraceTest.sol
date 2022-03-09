@@ -17,11 +17,11 @@ contract StacktraceTest {
   }
 
   function run(uint fnId) public {
-    function(bool) internal[12] memory run0s = [
+    function(bool) internal[13] memory run0s = [
       runAssert, runRequire, runMessage,
       runDivide, runPay, runCantPay, runBoom,
       runOutOfGas, runExternal, runInternal,
-      runInternalZero, runIndex
+      runInternalZero, runIndex, runCreate
     ];
     if(fnId < run0s.length) {
       run0 = run0s[fnId];
@@ -118,6 +118,12 @@ contract StacktraceTest {
       emit Num(nums[1]);
     }
   }
+
+  function runCreate(bool succeed) public {
+    if(!succeed) {
+      new CantCreate();
+    }
+  }
 }
 
 contract Boom {
@@ -126,5 +132,15 @@ contract Boom {
   }
 
   receive() external payable{
+  }
+}
+
+contract CantCreate {
+  constructor() {
+    fail();
+  }
+
+  function fail() public {
+    revert("Nope!");
   }
 }
