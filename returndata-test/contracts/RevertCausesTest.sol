@@ -114,6 +114,11 @@ contract Tester1 {
     (uint[] memory x) = abi.decode(hex"", (uint[]));
     return x;
   }
+
+  function loop() public {
+    while (true) {
+    }
+  }
 }
 
 contract Tester2 {
