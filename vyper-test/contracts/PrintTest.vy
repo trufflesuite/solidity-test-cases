@@ -1,4 +1,5 @@
 @external
 @payable
 def __default__():
-    print(1)
+    x: uint256 = 1
+    print(x)
