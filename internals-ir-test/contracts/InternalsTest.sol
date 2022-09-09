@@ -1,6 +1,29 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.16;
 
+function free() pure {
+  revert("florb");
+}
+
+function unused() pure {
+  revert("garmb");
+}
+
+function free2() pure {
+  revert("wherble");
+}
+
+library Lib {
+  event LibEv();
+  event UhOh();
+  function lib() internal {
+    emit LibEv();
+  }
+  function libunused() internal {
+    emit UhOh();
+  }
+}
+
 contract InternalsTestBase {
 
   event Fn(uint);
@@ -38,9 +61,10 @@ contract InternalsTest is InternalsTestBase {
 
   function ext() external {
     emit UhOh();
+    free();
   }
 
-  int8 barrier1 ;
+  int8 barrier1;
   function() internal pointer;
   int8 barrier2;
   int bigBarrier;
@@ -54,6 +78,9 @@ contract InternalsTest is InternalsTestBase {
     pointer = three;
     pointer = four;
     pointer = five;
+    pointer = free;
+    pointer = free2;
+    pointer = Lib.lib;
     emit Done();
   }
 }
