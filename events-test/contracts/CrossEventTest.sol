@@ -1,4 +1,5 @@
-pragma solidity ^0.5.13;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.15;
 
 contract Base {
   event baseEvent(uint);
@@ -7,15 +8,15 @@ contract Base {
 }
 
 contract Derived is Base {
-  event bothEvent(uint indexed);
+  //event bothEvent(uint indexed); //no longer allowed
   event derivedEvent(uint indexed);
   event nonOverride(uint);
   function run() public {
     emit baseEvent(1);
     emit Base.baseEvent(2);
-    emit bothEvent(3);
+    //emit bothEvent(3);
     emit Base.bothEvent(4);
-    emit Derived.bothEvent(5);
+    //emit Derived.bothEvent(5);
     emit derivedEvent(6);
     emit Derived.derivedEvent(7);
     emit nonOverride();

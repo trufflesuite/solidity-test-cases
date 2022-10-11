@@ -1,5 +1,5 @@
-pragma solidity ^0.5.8;
-pragma experimental ABIEncoderV2;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.15;
 
 contract EventsTest {
 
@@ -19,7 +19,7 @@ contract EventsTest {
   //event takesBytes(bytes memory);
   event takesBytes(bytes);
   event takesBytes32(bytes32);
-  event takesByte(byte);
+  event takesByte(bytes1);
   event takesEnum(Ternary);
   //event takesString(string memory);
   event takesString(string);

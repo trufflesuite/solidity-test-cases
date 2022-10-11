@@ -1,4 +1,5 @@
-pragma solidity ^0.5.9;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.15;
 
 contract EventOptionsTest {
   event MixedNames(uint, uint named, uint, uint AlsoNamed);

@@ -1,4 +1,5 @@
-pragma solidity ^0.5.9;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.15;
 
 contract AnonTest {
 
@@ -8,7 +9,7 @@ contract AnonTest {
     x = y;
   }
 
-  constructor(uint, uint y) public {
+  constructor(uint, uint y) {
     x = y;
   }
 }
