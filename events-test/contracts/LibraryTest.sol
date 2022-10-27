@@ -10,7 +10,7 @@ contract EmitsLibraries {
   }
   function callsExternal() public {
     emit Native();
-    Emitter.emitInternal();
+    Emitter.emitExternal();
     emit Native();
   }
 }

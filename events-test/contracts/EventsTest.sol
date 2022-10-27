@@ -57,7 +57,7 @@ contract EventsTest {
     emit takesByte(0xfe);
     emit takesEnum(Ternary.MaybeSo);
     emit takesString("hello");
-    //emit takesFunction(this.logStuff); //this works, but web3 currently can't handle it
+    emit takesFunction(this.logStuff);
     emit takesArray(arr);
     emit takesStaticArray([uint(3), 70]);
     emit takesStruct(Pair(40, 6));
