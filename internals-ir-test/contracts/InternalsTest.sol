@@ -26,6 +26,12 @@ library Lib {
 
 contract InternalsTestBase {
 
+  int8 barrier1;
+  function() internal pointer;
+  int8 barrier2;
+  int bigBarrier;
+
+  event Done();
   event Fn(uint);
   event UhOh();
 
@@ -41,11 +47,22 @@ contract InternalsTestBase {
   function extbase() external {
     emit UhOh();
   }
+
+  function run() public virtual {
+    barrier1 = -1;
+    barrier2 = -1;
+    bigBarrier = -1;
+    pointer = one;
+    pointer = two;
+    pointer = priv;
+    pointer = free;
+    pointer = free2;
+    pointer = Lib.lib;
+    emit Done();
+  }
 }
 
 contract InternalsTest is InternalsTestBase {
-
-  event Done();
 
   function three() public {
     emit Fn(3);
@@ -64,12 +81,7 @@ contract InternalsTest is InternalsTestBase {
     free();
   }
 
-  int8 barrier1;
-  function() internal pointer;
-  int8 barrier2;
-  int bigBarrier;
-
-  function run() public {
+  function run() public override {
     barrier1 = -1;
     barrier2 = -1;
     bigBarrier = -1;
