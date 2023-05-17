@@ -96,3 +96,10 @@ contract InternalsTest is InternalsTestBase {
     emit Done();
   }
 }
+
+contract NoInternals {
+  event Sklormf();
+  function run() public {
+    emit Sklormf();
+  }
+}
