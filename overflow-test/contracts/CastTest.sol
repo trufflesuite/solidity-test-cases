@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.7.3;
+pragma solidity ^0.8.0;
 
 contract CastTest {
 
@@ -13,35 +13,43 @@ contract CastTest {
   event functionEvent(function() external indexed);
 
   function enumTest() public {
-    uint8 byte1 = 0xff;
-    uint8 byte2 = 1;
-    uint8 sum = byte1 + byte2;
-    Ternary cast = Ternary(sum);
-    emit enumEvent(cast);
+    unchecked {
+      uint8 byte1 = 0xff;
+      uint8 byte2 = 1;
+      uint8 sum = byte1 + byte2;
+      Ternary cast = Ternary(sum);
+      emit enumEvent(cast);
+    }
   }
 
   function addressTest() public {
-    uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
-    uint160 integer2 = 1;
-    uint160 sum = integer1 + integer2;
-    address cast = address(sum);
-    emit addressEvent(cast);
+    unchecked {
+      uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
+      uint160 integer2 = 1;
+      uint160 sum = integer1 + integer2;
+      address cast = address(sum);
+      emit addressEvent(cast);
+    }
   }
 
   function contractTest() public {
-    uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
-    uint160 integer2 = 1;
-    uint160 sum = integer1 + integer2;
-    CastTest cast = CastTest(sum);
-    emit contractEvent(cast);
+    unchecked {
+      uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
+      uint160 integer2 = 1;
+      uint160 sum = integer1 + integer2;
+      CastTest cast = CastTest(address(sum));
+      emit contractEvent(cast);
+    }
   }
 
   function functionTest() public {
-    uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
-    uint160 integer2 = 1;
-    uint160 sum = integer1 + integer2;
-    CastTest cast = CastTest(sum);
-    function() external fn = cast.functionTest;
-    emit functionEvent(fn);
+    unchecked {
+      uint160 integer1 = 0x00ffffffffffffffffffffffffffffffffffffffff;
+      uint160 integer2 = 1;
+      uint160 sum = integer1 + integer2;
+      CastTest cast = CastTest(address(sum));
+      function() external fn = cast.functionTest;
+      emit functionEvent(fn);
+    }
   }
 }
