@@ -12,7 +12,20 @@ module.exports = {
   {
     solc:
     {
-      version: "0.8.21"
+      version: "0.8.21",
+      settings: {
+        optimizer: {
+          enabled: false,
+          details: {
+            peephole: false,
+            yul: true,
+            yulDetails: {
+              stackAllocation: false,
+              optimizerSteps: ":"
+            }
+          }
+        }
+      }
     }
   }
 };
